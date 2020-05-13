@@ -1,0 +1,792 @@
+.s-xmancard-mine_new_new {
+	padding-bottom: 21px; position: relative; user-select: none; -moz-user-select: none; -webkit-user-select: none;
+}
+.s-mine-wrapper {
+	margin-top: 12px;
+}
+#s_content_100 .s-mine-blank .tips-manager-area {
+	display: none;
+}
+.s-ctner-contents .s-mine-split {
+	position: relative; z-index: 0;
+}
+.s-code-blocks {
+	border-radius: 12px; width: 100%; margin-bottom: 20px; position: relative; box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.08);
+}
+.s-block-container {
+	padding: 24px 0px 9px;
+}
+.s-block-container .s-mblock-content {
+	font-size: 14px;
+}
+.s-code-blocks .s-setbar {
+	top: -1px; height: 16px; right: 16px; line-height: 16px; font-size: 13px; position: absolute; z-index: 2;
+}
+.s-code-blocks .s-setbar .set-btn {
+	margin-left: 24px; vertical-align: text-bottom; display: inline-block; cursor: pointer;
+}
+.s-code-blocks .s-setbar .set-btn span {
+	vertical-align: bottom;
+}
+.s-code-blocks .s-setbar .set-refresh .c-icon {
+	color: rgb(145, 149, 163); font-size: 16px; margin-right: 4px; vertical-align: text-bottom;
+}
+.s-code-blocks .s-setbar .set-refresh:hover .c-icon {
+	color: rgb(49, 94, 251);
+}
+.s-code-blocks .s-setbar .edit-class .c-icon {
+	color: rgb(215, 217, 224); font-size: 16px; margin-right: 4px; vertical-align: text-bottom;
+}
+.s-code-blocks .s-setbar .set-menu .edit-class .selected {
+	border-radius: 4px; border: 1px solid rgb(215, 217, 224); border-image: none; height: 16px; color: rgb(78, 113, 242); font-size: 14px; display: none;
+}
+.s-code-blocks .s-setbar .set-menu .edit-class .noselect {
+	display: inline-block;
+}
+.s-code-blocks .s-setbar .set-menu .classed .selected {
+	display: inline;
+}
+.s-code-blocks .s-setbar .set-menu .classed .noselect {
+	display: none;
+}
+.s-code-blocks .s-setbar .set-btn:hover {
+	color: rgb(49, 94, 251);
+}
+:first-child.s-code-blocks .s-setbar .set-menu .set-totop {
+	display: none;
+}
+.s-code-blocks .s-mblock-title {
+	padding: 0px 16px; width: 100%; height: 16px; text-align: left; line-height: 16px; position: relative; z-index: 0; box-sizing: border-box;
+}
+.s-code-blocks .s-mblock-title .mine-title-num {
+	display: none;
+}
+.sui-dialog-mine-pannel {
+	box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+}
+.sui-dialog-mine-pannel .sui-dialog-body {
+	padding: 0px; width: 841px; display: block;
+}
+.sui-dialog-mine-pannel .sug-content {
+	width: 100%; height: 55px; padding-top: 15px;
+}
+.sui-dialog-mine-pannel .recom-content {
+	width: 100%; text-align: center;
+}
+.sui-dialog-mine-pannel .recom-content .s-content-load {
+	padding: 150px 0px;
+}
+.sui-dialog-mine-pannel .sui-suggestion-hover {
+	background: rgb(240, 240, 240);
+}
+.sui-dialog-mine-pannel .recom-content .loading-img {
+	margin-top: 200px;
+}
+.sui-dialog-mine-pannel .recom-content .one-class {
+	padding-bottom: 17px; margin-top: -1px; border-top-color: rgb(245, 245, 245); border-top-width: 1px; border-top-style: solid;
+}
+.sui-dialog-mine-pannel .recom-content .class-recoms {
+	margin: 0px auto; width: 794px; text-align: left;
+}
+.sui-dialog-mine-pannel .recom-content .class-title {
+	margin: 0px auto; width: 794px; text-align: left;
+}
+.sui-dialog-mine-pannel .recom-content .class-title {
+	line-height: 50px;
+}
+.sui-dialog-mine-pannel .recom-content .recom-item {
+	width: 158px; height: 28px; line-height: 28px; display: inline-block; cursor: pointer; -ms-zoom: 1; -ms-user-select: none; user-select: none; -moz-user-select: none; -webkit-user-select: none; -khtml-user-select: none;
+}
+.sui-dialog-mine-pannel .recom-content .recom-item .recom-icon {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-mine-pannel .recom-content .recom-item .recom-text {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-mine-pannel .recom-content .recom-item .recom-icon {
+	background: url("../../img/mine/mine_set-a1ee6c4b1e.png?v=md5") no-repeat -16px -28px; width: 14px; height: 14px; _background: url(../../img/mine/mine_set_ie-a94e02fc99.png?v=md5) no-repeat -16px -28px;
+}
+.sui-dialog-mine-pannel .recom-content .recom-hover .recom-icon {
+	background-position: 0px -28px;
+}
+.sui-dialog-mine-pannel .recom-item:hover .recom-icon {
+	background-position: 0px -28px;
+}
+.sui-dialog-mine-pannel .recom-content .item-added .recom-icon {
+	background-position: -32px -28px;
+}
+.sui-dialog-mine-pannel .recom-content .recom-item .recom-text {
+	width: 130px; overflow: hidden; margin-left: 10px; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.s-xmancard-mine_new .virtual {
+	opacity: 0.5;
+}
+.s-xmancard-mine_new .virtual * {
+	_opacity: .3;
+}
+.s-code-blocks .block-loading {
+	background: url("../../img/mine/blank-b79ffa5cb1.png?v=md5"); left: 0px; top: 0px; width: 100%; height: 100%; position: absolute; z-index: 2; opacity: 0; _padding-bottom: 999999px;
+}
+.s-code-blocks .s-simp-toggle {
+	color: rgb(0, 119, 255); cursor: pointer;
+}
+.edting-block .s-simp-toggle {
+	display: block;
+}
+.s-xmancard-mine_new .s-all-blank {
+	background: rgb(255, 255, 255); border-radius: 12px; width: 100%; height: 188px; font-family: MicrosoftYaHei; box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.08);
+}
+.s-xmancard-mine_new .s-all-blank .blank-add-text {
+	text-align: center; color: rgb(145, 149, 163); line-height: 14px; padding-top: 60px; font-size: 14px;
+}
+.s-xmancard-mine_new .s-all-blank .blank-add-btn {
+	background: rgb(78, 113, 242); margin: 24px auto 0px; border-radius: 6px; width: 80px; height: 30px; text-align: center; color: rgb(255, 255, 255); line-height: 30px; font-size: 13px; cursor: pointer;
+}
+.sui-dialog-mine-blank-pannel {
+	border-radius: 16px; top: 50%; width: 491px; height: 188px; margin-top: -94px; position: fixed; _position: absolute;
+}
+.sui-dialog-mine-blank-pannel .sui-dialog-title {
+	border: currentColor; border-image: none;
+}
+.sui-dialog-mine-blank-pannel .sui-dialog-body {
+	width: 491px;
+}
+.sui-dialog-mine-blank-pannel .sui-dialog-body .recom-content {
+	width: 424px; height: 124px; text-align: left; overflow: hidden; padding-top: 25px; margin-left: 44px;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-item {
+	border-radius: 6px; border: 1px solid rgb(204, 204, 204); border-image: none; width: 84px; height: 24px; line-height: 24px; margin-right: 20px; margin-bottom: 15px; display: inline-block; cursor: pointer; -ms-zoom: 1; -ms-user-select: none; user-select: none; -moz-user-select: none; -webkit-user-select: none; -khtml-user-select: none;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-item .recom-icon {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-item .recom-text {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-item .recom-icon {
+	background: url("../../img/mine/mine_set-a1ee6c4b1e.png?v=md5") no-repeat -16px -28px; width: 14px; height: 14px; margin-left: 5px; _background: url(../../img/mine/mine_set_ie-a94e02fc99.png?v=md5) no-repeat -16px -28px;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-hover .recom-icon {
+	background-position: 0px -28px;
+}
+.sui-dialog-mine-blank-pannel .recom-item:hover .recom-icon {
+	background-position: 0px -28px;
+}
+.sui-dialog-mine-blank-pannel .recom-content .item-added .recom-icon {
+	background-position: -32px -28px; margin-left: 5px;
+}
+.sui-dialog-mine-blank-pannel .recom-content .recom-item .recom-text {
+	width: 60px; text-align: left; overflow: hidden; margin-left: 5px; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.s-xmancard-mine_new .tips-manager-area {
+	height: 16px; text-align: left; line-height: 16px; margin-top: 4px; position: relative;
+}
+.s-xmancard-mine_new .tips-manager-btn {
+	width: 68px; cursor: pointer;
+}
+.s-xmancard-mine_new .tips-manager-btn span {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.s-xmancard-mine_new .tips-manager-btn .manager-btn-icon {
+	color: rgb(145, 149, 163); line-height: 16px; font-size: 16px;
+}
+.s-xmancard-mine_new .tips-manager-btn .manager-btn-text {
+	color: rgb(51, 51, 51); padding-left: 4px; font-size: 14px;
+}
+.s-xmancard-mine_new .edting-btn-text .manager-btn-text {
+	color: rgb(49, 94, 251);
+}
+.s-xmancard-mine_new .tips-manager-btn .manager-btn-text:hover {
+	color: rgb(49, 94, 251);
+}
+.s-xmancard-mine_new .edting-btn-text .manager-btn-icon {
+	background-position: -70px 0px;
+}
+.sui-dialog-minesetting {
+	border-radius: 16px; margin-top: -56px; margin-left: -256px; position: fixed;
+}
+.sui-dialog-minesetting .sui-dialog-close {
+	width: 20px; height: 20px;
+}
+.sui-dialog-minesetting .sui-dialog-body {
+	width: 100%;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap {
+	padding: 24px 0px 0px 18px; font-family: MicrosoftYaHei;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left {
+	width: 224px; float: left; position: relative;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right {
+	width: 224px; float: left; position: relative;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left .s-mod-item {
+	margin: 0px 6px; border-radius: 6px; width: 82px; height: 28px; text-align: center; color: rgb(51, 51, 51); line-height: 28px; font-size: 13px; display: inline-block; position: relative; cursor: pointer;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .s-mod-item {
+	margin: 0px 6px; border-radius: 6px; width: 82px; height: 28px; text-align: center; color: rgb(51, 51, 51); line-height: 28px; font-size: 13px; display: inline-block; position: relative; cursor: pointer;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left .s-mod-item {
+	border: 1px dashed rgb(215, 217, 224); border-image: none;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left .s-mod-item .s-mod-icon-del {
+	top: -8px; width: 16px; height: 16px; right: -8px; color: rgb(196, 199, 206); line-height: 16px; font-size: 12px; display: block; position: absolute;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left .s-mod-item .s-mod-icon-add {
+	display: none;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-left .mod-hover .s-mod-icon {
+	color: rgb(49, 94, 251);
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right {
+	width: 228px; margin-left: 40px;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .s-mod-item {
+	border: 1px solid rgb(215, 217, 224); border-image: none; width: 88px;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .s-mod-item .s-mod-icon-add {
+	color: rgb(145, 149, 163); font-size: 16px; vertical-align: bottom; display: inline;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .s-mod-item .s-mod-icon-del {
+	display: none;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .s-mod-item .s-mod-title {
+	padding-left: 4px; display: inline;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-right .mod-hover .s-mod-icon {
+	color: rgb(49, 94, 251);
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap h3 {
+	color: rgb(34, 34, 34); line-height: 14px; padding-left: 6px; font-size: 14px; font-weight: 400;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .s-minesetting-content {
+	height: 42px; padding-top: 20px; position: relative;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .nomore-tips-left {
+	left: 0px; top: 27px; width: 212px; text-align: center; color: rgb(145, 149, 163); line-height: 38px; font-size: 13px; position: absolute;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .nomore-tips-right {
+	left: 0px; top: 27px; width: 212px; text-align: center; color: rgb(145, 149, 163); line-height: 38px; font-size: 13px; position: absolute;
+}
+.sui-dialog-minesetting .sui-dialog-body .s-minesetting-wrap .sui-draggsort-holder {
+	border: 1px dashed rgb(56, 156, 255); border-image: none;
+}
+.s-block-nav .s-mblock-content {
+	width: 102%; text-align: left; overflow: hidden; margin-left: -8px; position: relative;
+}
+.s-block-nav .block-classed {
+	margin-left: 0px;
+}
+.s-code-blocks .s-mblock-bot {
+	text-align: left;
+}
+.s-block-nav .s-mblock-content .sui-draggable {
+	z-index: 7; opacity: 0.5;
+}
+.s-block-nav .s-mblock-content .sui-draggable .border-for-item {
+	border: 1px dashed rgb(51, 136, 255); border-image: none;
+}
+.s-code-blocks .nav-item {
+	margin: 15px 24px; height: 32px; line-height: 32px; font-size: 0px; display: inline-block; position: relative; cursor: pointer; -ms-zoom: 1;
+}
+.s-block-nav .nav-icon {
+	width: 32px; height: 32px;
+}
+.s-block-nav .nav-icon-normal {
+	border-radius: 6px; width: 32px; height: 32px; text-align: center; color: rgb(255, 255, 255); line-height: 33px; text-indent: 7px; letter-spacing: 6px; overflow: hidden; font-size: 16px; vertical-align: middle; display: inline-block; background-color: rgb(179, 180, 197);
+}
+.s-code-blocks .add-nav {
+	width: 128px;
+}
+.s-mblock-bot .add-nav {
+	margin-left: 96px;
+}
+.s-mblock-bot.block-blank .add-nav {
+	margin-left: 16px;
+}
+.s-code-blocks .nav-icon-add {
+	border-radius: 6px; width: 32px; height: 32px; text-align: center; color: rgb(145, 149, 163); line-height: 32px; text-indent: 1px; overflow: hidden; font-size: 16px; vertical-align: middle; display: inline-block; background-color: rgb(245, 245, 246);
+}
+.s-block-nav .nav-icon {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.s-code-blocks .nav-text {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.s-code-blocks .nav-text {
+	width: 84px; font-size: 14px;
+}
+.block-classed .nav-text {
+	text-align: left; overflow: hidden; white-space: nowrap; cursor: pointer; -ms-text-overflow: ellipsis;
+}
+.s-code-blocks .nav-text {
+	text-align: left; overflow: hidden; white-space: nowrap; cursor: pointer; -ms-text-overflow: ellipsis;
+}
+.edting-block .border-for-item {
+	cursor: move;
+}
+.edting-block .border-for-item .nav-text {
+	cursor: move;
+}
+.edting-block .border-for-item img {
+	cursor: move;
+}
+.edting-block .add-nav .border-for-item {
+	cursor: pointer;
+}
+.s-block-nav .nav-del {
+	top: -3px; width: 12px; height: 12px; text-align: center; right: -5px; color: rgb(215, 217, 224); line-height: 12px; font-size: 12px; display: none; position: absolute;
+}
+.edting-block .nav-del {
+	display: block;
+}
+.edting-block .nav-del:hover {
+	color: rgb(78, 113, 242);
+}
+.s-block-nav .nav-item-edit {
+	background: rgb(245, 245, 246); top: 8px; width: 16px; height: 16px; text-align: center; right: 0px; color: rgb(196, 199, 206); line-height: 16px; padding-right: 10px; padding-left: 6px; font-size: 16px; vertical-align: middle; float: right; display: none; position: absolute; cursor: pointer;
+}
+.edting-block .nav-item-edit:hover {
+	color: rgb(49, 94, 251);
+}
+.s-block-nav .nav-text {
+	font-size: 14px;
+}
+.s-block-nav .dir-item {
+	width: 100%; overflow: hidden; position: relative;
+}
+.s-block-nav .dir-blank {
+	display: none;
+}
+.s-block-nav .dir-item .dir-name {
+	padding: 15px 0px; width: 64px; height: 100%; line-height: 32px; overflow: hidden; float: left; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.s-block-nav .dir-item .dir-content {
+	width: 960px; float: left; position: relative;
+}
+@media screen and (max-width:1340px)
+{
+.s-block-nav .dir-item .dir-content {
+	width: 820px;
+}
+}
+.s-block-nav .dir-item .d-nav-item {
+	height: 32px; line-height: 32px; font-size: 0px; margin-top: 15px; margin-right: 16px; margin-bottom: 15px; display: inline-block; cursor: pointer;
+}
+.s-block-nav .s-mblock-content .dir-item .d-nav-item {
+	z-index: 2;
+}
+.s-block-nav .s-mblock-content .nav-item {
+	z-index: 2;
+}
+.s-block-nav .d-nav-item .border-for-item {
+	width: 100%; height: 100%; color: rgb(51, 51, 51); text-decoration: none; display: block;
+}
+.s-code-blocks .nav-item .border-for-item {
+	width: 100%; height: 100%; color: rgb(51, 51, 51); text-decoration: none; display: block;
+}
+.s-block-nav .d-nav-item .border-for-item:hover .nav-text {
+	color: rgb(49, 94, 251);
+}
+.s-code-blocks .nav-item .border-for-item:hover .nav-text {
+	color: rgb(49, 94, 251);
+}
+.edting-block .d-nav-item .border-for-item:hover .nav-text {
+	color: rgb(51, 51, 51);
+}
+.edting-block .nav-item .border-for-item:hover .nav-text {
+	color: rgb(51, 51, 51);
+}
+.edting-block .d-nav-item .border-for-item {
+	background: rgb(245, 245, 246); border-radius: 6px;
+}
+.edting-block .nav-item .border-for-item {
+	background: rgb(245, 245, 246); border-radius: 6px;
+}
+.edting-block .add-nav .border-for-item {
+	background: 0px 0px;
+}
+.edting-block .s-block-container .d-nav-item a:hover .nav-item-edit {
+	display: block;
+}
+.edting-block .s-block-container .nav-item a:hover .nav-item-edit {
+	display: block;
+}
+.edting-block .add-nav .border-for-item {
+	color: rgb(145, 149, 163);
+}
+.edting-block .add-nav .border-for-item .nav-icon-add {
+	color: rgb(145, 149, 163); font-size: 16px;
+}
+.edting-block .add-nav:hover .border-for-item .nav-text {
+	color: rgb(145, 149, 163);
+}
+.edting-block .add-nav:hover .border-for-item .nav-icon-add {
+	color: rgb(145, 149, 163); background-color: rgb(245, 245, 246);
+}
+.s-code-blocks .title-content .edit-tool {
+	height: 16px; font-size: 13px; float: right;
+}
+.s-code-blocks .title-content .edit-tool .tool-item {
+	line-height: 16px; cursor: pointer;
+}
+.s-code-blocks .blank-menu {
+	display: none;
+}
+.s-code-blocks .blank-menu .edit-class {
+	display: none;
+}
+.s-block-nav .sui-draggsort-holder {
+	border: 0px currentColor; border-image: none;
+}
+.edting-block .s-mblock-content .d-drag-item {
+	z-index: 0; cursor: move;
+}
+.edting-block .s-mblock-content .dir-item {
+	z-index: 0; cursor: move;
+}
+.sui-dialog-nav-pannel {
+	border-radius: 16px;
+}
+.sui-dialog-mine-pannel .sui-dialog-close {
+	background: 0px 0px; top: 8px; text-align: center; right: 8px; color: rgb(145, 149, 163); line-height: 20px; text-indent: 0px; font-size: 16px; opacity: 0.5;
+}
+.sui-dialog-mine-pannel .sui-dialog-close:hover {
+	color: rgb(49, 94, 251); text-decoration: none; opacity: 1;
+}
+.sui-dialog-mine-pannel .sui-dialog-title {
+	border: currentColor; border-image: none; height: 16px; line-height: 16px; padding-top: 23px; padding-left: 15px; font-weight: 400;
+}
+.sui-dialog-nav-pannel .sui-tips {
+	border-radius: 6px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-button {
+	vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-nav-pannel .sug-link-wrap {
+	vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-nav-pannel .sug-my-dirs {
+	vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-nav-pannel .sug-name-wrap {
+	vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-nav-pannel .sug-content .sug-link {
+	outline: 0px; border: 1px solid rgb(215, 217, 224); border-image: none; width: 205px; color: rgb(51, 51, 51); padding-left: 11px; font-size: 13px; margin-left: 25px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-name {
+	outline: 0px; border: 1px solid rgb(215, 217, 224); border-image: none; width: 205px; color: rgb(51, 51, 51); padding-left: 11px; font-size: 13px; margin-left: 25px;
+}
+.sui-dialog-nav-pannel .sug-my-dirs {
+	outline: 0px; border: 1px solid rgb(215, 217, 224); border-image: none; width: 205px; color: rgb(51, 51, 51); padding-left: 11px; font-size: 13px; margin-left: 25px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-link {
+	border-radius: 6px; height: 25px; line-height: 25px; padding-top: 2px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-name {
+	border-radius: 6px; height: 25px; line-height: 25px; padding-top: 2px;
+}
+.sui-dialog-nav-pannel .sug-my-dirs {
+	width: 130px; height: 27px; line-height: 27px; margin-left: 10px; display: none;
+}
+.sui-dialog-nav-pannel .classify .sug-my-dirs {
+	border-radius: 6px; display: inline-block; -ms-zoom: 1; background-color: rgb(255, 255, 255);
+}
+.sui-dialog-nav-pannel .classify .showed {
+	border-radius: 6px 6px 0px 0px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-link {
+	width: 440px; margin-left: 10px;
+}
+.sui-dialog-nav-pannel .sug-content .sug-link:focus {
+	border: 1px solid rgb(49, 94, 251); border-image: none;
+}
+.sui-dialog-nav-pannel .sug-content .sug-name:focus {
+	border: 1px solid rgb(49, 94, 251); border-image: none;
+}
+.sui-dialog-nav-pannel .sug-content .sug-button {
+	border-radius: 6px; width: 100px; height: 28px; text-align: center; color: rgb(255, 255, 255); line-height: 28px; margin-left: 10px; cursor: pointer; background-color: rgb(78, 113, 242);
+}
+.sui-dialog-mine-pannel .sug-content {
+	position: relative;
+}
+.sui-dialog-nav-pannel .sui-suggestion .sp_sg_name {
+	width: 230px; margin-left: 7px; display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-nav-pannel .classify .sug-link {
+	width: 300px;
+}
+.sui-dialog-nav-pannel .classify .sug-name {
+	width: 195px;
+}
+.sui-dialog-nav-pannel .nav-dirs-layer {
+	border-width: medium 1px 1px; border-style: none solid solid; border-color: currentColor rgb(205, 205, 205) rgb(205, 205, 205); border-image: none; left: -1px; top: 28px; width: 141px; position: absolute; -ms-overflow-y: auto; max-height: 400px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; background-color: rgb(255, 255, 255);
+}
+.sui-dialog-nav-pannel .nav-dirs-layer .dir-item {
+	height: 30px; line-height: 30px; overflow: hidden; padding-left: 8px; white-space: nowrap; cursor: pointer; -ms-text-overflow: ellipsis;
+}
+.sui-dialog-nav-pannel .nav-dirs-layer .dir-item:hover {
+	background-color: rgb(240, 240, 240);
+}
+.sui-dialog-nav-pannel .sug-my-dirs .sug-dir-input {
+	background: 0px 0px; outline: 0px; border: 0px currentColor; border-image: none; left: 0px; top: 0px; width: 110px; height: 100%; color: rgb(102, 102, 102); line-height: 27px; padding-left: 8px; position: absolute; cursor: pointer; _height: 27px;
+}
+.sui-dialog-nav-pannel .sug-my-dirs .input-icon {
+	background: url("../../img/mine/mine_set-a1ee6c4b1e.png?v=md5") no-repeat -105px -32px; top: 12px; width: 9px; height: 6px; right: 5px; position: absolute; _background: url(../../img/mine/mine_set_ie-a94e02fc99.png?v=md5) no-repeat -105px -32px;
+}
+.sui-tips-nav-success .sui-tips-arrow {
+	display: none;
+}
+.sui-tips-hasicons {
+	line-height: 21px;
+}
+.s-xmancard-mine .sui-dialog-mask-nav-edit {
+	left: 0px; top: -13px; padding-top: 13px; position: absolute; _top: 0;
+}
+.sui-dialog-mask-mine-blank-pannel {
+	opacity: 0.2;
+}
+.sui-dialog-mask-minesetting {
+	opacity: 0.2;
+}
+.sui-dialog-mask-nav-edit {
+	opacity: 0.2;
+}
+.sui-dialog-nav-edit {
+	border-radius: 12px;
+}
+.sui-dialog-nav-edit .sui-dialog-body {
+	height: 65px; text-align: center; display: block;
+}
+.sui-dialog-nav-edit .nav-edit-name {
+	width: 227px; height: 30px; padding-bottom: 5px;
+}
+.sui-dialog-nav-edit .nav-edit-url {
+	width: 227px; height: 30px; padding-bottom: 5px;
+}
+.sui-dialog-nav-edit .nav-edit-name input {
+	padding: 0px 0px 0px 7px; outline: 0px; border-radius: 6px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 100%; height: 28px; line-height: 28px;
+}
+.sui-dialog-nav-edit .nav-edit-url input {
+	padding: 0px 0px 0px 7px; outline: 0px; border-radius: 6px; border: 1px solid rgb(229, 229, 229); border-image: none; width: 100%; height: 28px; line-height: 28px;
+}
+.sui-dialog-nav-edit .sui-dialog-footer {
+	background: 0px 0px;
+}
+.sui-dialog-nav-edit .sui-dialog-footer a {
+	border-radius: 6px;
+}
+.s-block-stock .s-mblock-content {
+	padding: 5px 16px; text-align: left; color: rgb(51, 51, 51); overflow: hidden; position: relative;
+}
+.s-block-stock .stock-banner {
+	background: rgb(245, 245, 245); border-radius: 6px; height: 32px; text-align: left; color: rgb(98, 102, 117); line-height: 32px; font-size: 13px; margin-top: 15px;
+}
+.s-skin-hasbg .s-block-stock .stock-banner {
+	background: 0px 0px;
+}
+.s-block-stock .stock-banner-hide {
+	display: none;
+}
+.s-block-stock .s-mblock-content .sui-draggable {
+	border: 1px dashed rgb(51, 136, 255); border-image: none; opacity: 0.5;
+}
+.s-block-stock .stock-item {
+	margin: 5px 0px; height: 32px; line-height: 32px; font-size: 14px; float: left; position: relative;
+}
+.edting-block .stock-item {
+	background: rgb(245, 245, 246); border-radius: 6px; font-size: 14px; cursor: move;
+}
+.s-block-stock .stock-item-blank {
+	padding-top: 5px;
+}
+.edting-block .stock-del:hover .stock-item {
+	opacity: 1;
+}
+.edting-block .stock-content .stock-item-add:hover {
+	background: 0px 0px; border: currentColor; border-image: none;
+}
+.s-block-stock .stock-tag {
+	left: 0px; top: 50%; width: 17px; height: 12px; color: rgb(255, 255, 255); line-height: normal; margin-top: -6px; position: absolute;
+}
+.edting-block .stock-tag {
+	display: none;
+}
+.s-block-stock .stock-nape {
+	height: 100%; letter-spacing: 0px; overflow: hidden; padding-left: 32px; word-spacing: 0px; vertical-align: top; display: inline-block; white-space: nowrap; position: relative; -ms-zoom: 1; -ms-text-overflow: ellipsis;
+}
+.stock-banner .stock-nape {
+	line-height: 34px;
+}
+.s-block-stock .stock-code {
+	padding-left: 0px;
+}
+.s-block-stock .stock-code .stock-code-name {
+	vertical-align: middle;
+}
+.s-block-stock .stock-up .stock-nape {
+	color: rgb(246, 48, 81);
+}
+.s-block-stock .stock-down .stock-nape {
+	color: rgb(14, 190, 152);
+}
+.s-block-stock .stock-price {
+	overflow: visible;
+}
+.s-block-stock .stock-price .stock-arrow {
+	top: 8px; width: 16px; height: 16px; text-align: center; right: -16px; line-height: 18px; font-weight: 700; vertical-align: middle; display: inline-block; position: absolute;
+}
+.s-block-stock .stock-increase {
+	font-family: Arial-BoldMT;
+}
+.s-block-stock .stock-incrpercentage {
+	font-family: Arial-BoldMT;
+}
+.s-block-stock .stock-price {
+	font-family: Arial-BoldMT;
+}
+.s-block-stock .stock-highprice {
+	text-align: right;
+}
+.s-block-stock .stock-increase {
+	text-align: right;
+}
+.s-block-stock .stock-incrpercentage {
+	text-align: right;
+}
+.s-block-stock .stock-lowprice {
+	text-align: right;
+}
+.s-block-stock .stock-price {
+	text-align: right;
+}
+.s-block-stock .stock-updatetime {
+	text-align: right;
+}
+.s-block-stock .stock-updatetime {
+	overflow: hidden; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.s-block-stock .stock-item .stock-code {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-code a {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-title {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-title a {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-code a:hover {
+	color: rgb(49, 94, 251); text-decoration: none;
+}
+.s-block-stock .stock-item .stock-title a:hover {
+	color: rgb(49, 94, 251); text-decoration: none;
+}
+.edting-block .stock-item .stock-code a {
+	cursor: move;
+}
+.edting-block .stock-item .stock-title a {
+	cursor: move;
+}
+.edting-block .stock-item .stock-code a .c-capsule-tip {
+	font-family: DINAlternate;
+}
+.edting-block .stock-item .stock-title a .c-capsule-tip {
+	font-family: DINAlternate;
+}
+.edting-block .stock-item .stock-code a:hover {
+	color: rgb(51, 51, 51); text-decoration: none; cursor: move;
+}
+.edting-block .stock-item .stock-title a:hover {
+	color: rgb(51, 51, 51); text-decoration: none; cursor: move;
+}
+.s-block-stock .stock-item .stock-highprice {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-lowprice {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-item .stock-updatetime {
+	color: rgb(51, 51, 51);
+}
+.s-block-stock .stock-del {
+	top: -8px; width: 20px; height: 20px; text-align: center; right: -8px; color: rgb(196, 199, 206); line-height: 20px; font-size: 12px; display: none; position: absolute; cursor: pointer;
+}
+.s-block-stock .stock-del:hover {
+	color: rgb(78, 113, 242);
+}
+.s-block-stock .stock-item-add {
+	margin-bottom: 0px;
+}
+.s-block-stock .stock-item-add .add-stock {
+	margin-left: 32px;
+}
+.s-block-stock .stock-item-blank .add-stock {
+	margin-left: 16px;
+}
+.edting-block .stock-del {
+	display: block;
+}
+.edting-block .stock-item-add {
+	background: 0px 0px; border: currentColor; border-image: none;
+}
+.s-block-stock .add-stock {
+	margin-top: 0px;
+}
+@media screen and (max-width:1340px)
+{
+.s-block-stock .stock-nape {
+	padding-left: 10px;
+}
+}
+.sui-wraper .sui-dialog-stock-pannel {
+	background: rgb(255, 255, 255); border-radius: 16px; position: fixed; box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1); _position: absolute;
+}
+.sui-wraper .sui-dialog-stock-pannel .sui-dialog-title {
+	border: currentColor; border-image: none;
+}
+.sui-dialog-stock-pannel .sug-content .sug-button {
+	border-radius: 6px; vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sug-content .sug-link {
+	border-radius: 6px; vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sug-link-wrap {
+	border-radius: 6px; vertical-align: top; display: inline-block; position: relative; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sug-link-wrap {
+	padding-left: 25px;
+}
+.sui-dialog-stock-pannel .sug-content .sug-link {
+	outline: 0px; border: 1px solid rgb(215, 217, 224); border-image: none; width: 678px; height: 28px; color: rgb(51, 51, 51); line-height: 28px; padding-left: 11px; font-size: 13px;
+}
+.sui-dialog-stock-pannel .sug-content .sug-link:focus {
+	border: 1px solid rgb(49, 94, 251); border-image: none;
+}
+.sui-dialog-stock-pannel .sug-content .sug-button {
+	border-radius: 6px; width: 100px; height: 30px; text-align: center; color: rgb(255, 255, 255); line-height: 30px; margin-left: 10px; cursor: pointer; background-color: rgb(78, 113, 242);
+}
+.s-block-stock .stock-blank {
+	background: url("../../img/mine/s_stock_blank-9651ddb4b8.png?v=md5") no-repeat 254px 23px; width: 100%; height: 50px; position: relative; _background: url(../../img/mine/s_stock_blank_ie-e982f9341d.png?v=md5) no-repeat 254px 23px;
+}
+.sui-suggestion .sp-sg-name {
+	width: 490px;
+}
+.sui-dialog-stock-pannel .sui-suggestion .sp-sg-code {
+	display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sui-suggestion .sp-sg-market {
+	display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sui-suggestion .sp-sg-name {
+	display: inline-block; -ms-zoom: 1;
+}
+.sui-dialog-stock-pannel .sui-suggestion .sp-sg-code {
+	width: 108px; padding-left: 7px;
+}
+.sui-dialog-stock-pannel .sui-suggestion .sp-sg-market {
+	width: 70px;
+}
