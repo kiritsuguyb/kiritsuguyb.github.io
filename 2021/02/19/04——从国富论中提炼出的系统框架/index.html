@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":36,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="系统框架资本人口金字塔模型 摘要关键词： 图解国富论第一篇  如图所示，第一篇中叙述了商品交换中最广泛的问题，这个问题涉及到所有的市场交换行为。 首先，所有的劳动产物都有自然的参与。 在任何一次市场行为中，商品都至少经由三种阶级中的一种或多种被生产出来。分工加强了人们的生产效率，因而人们的消耗速度低于生产速度，这是整个社会财富能够不断积累的根本原因。 在每一次市场交换的过程中，商品卖出所获得的钱财">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04——从国富论中提炼出的系统框架">
+<meta property="og:url" content="http://yoursite.com/2021/02/19/04%E2%80%94%E2%80%94%E4%BB%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%AD%E6%8F%90%E7%82%BC%E5%87%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="KiritsuguybのBlog">
+<meta property="og:description" content="系统框架资本人口金字塔模型 摘要关键词： 图解国富论第一篇  如图所示，第一篇中叙述了商品交换中最广泛的问题，这个问题涉及到所有的市场交换行为。 首先，所有的劳动产物都有自然的参与。 在任何一次市场行为中，商品都至少经由三种阶级中的一种或多种被生产出来。分工加强了人们的生产效率，因而人们的消耗速度低于生产速度，这是整个社会财富能够不断积累的根本原因。 在每一次市场交换的过程中，商品卖出所获得的钱财">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/19/BdyoL4ApZMlK2hw.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/19/D2JKha8qMpnyLkP.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/19/OrT9dUNWXM8YvgH.png">
+<meta property="article:published_time" content="2021-02-19T05:15:24.000Z">
+<meta property="article:modified_time" content="2021-02-19T16:42:21.715Z">
+<meta property="article:author" content="kiritsuguyb">
+<meta property="article:tag" content="国富论">
+<meta property="article:tag" content="游戏策划">
+<meta property="article:tag" content="经济学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/19/BdyoL4ApZMlK2hw.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/02/19/04%E2%80%94%E2%80%94%E4%BB%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%AD%E6%8F%90%E7%82%BC%E5%87%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>04——从国富论中提炼出的系统框架 | KiritsuguybのBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KiritsuguybのBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">阿丝爱学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/19/04%E2%80%94%E2%80%94%E4%BB%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%AD%E6%8F%90%E7%82%BC%E5%87%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/timg.jpg">
+      <meta itemprop="name" content="kiritsuguyb">
+      <meta itemprop="description" content="月明霁君忧，拨云不见愁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KiritsuguybのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          04——从国富论中提炼出的系统框架
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-19 13:15:24" itemprop="dateCreated datePublished" datetime="2021-02-19T13:15:24+08:00">2021-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-20 00:42:21" itemprop="dateModified" datetime="2021-02-20T00:42:21+08:00">2021-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B3%E4%BA%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/" itemprop="url" rel="index"><span itemprop="name">关于国富论一个游戏策划所需要知道的一切</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="系统框架"><a href="#系统框架" class="headerlink" title="系统框架"></a><center>系统框架</center></h1><p><strong><center>资本人口金字塔模型</center></strong></p>
+<h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><center>摘要</center></h4><p><strong>关键词：</strong></p>
+<h2 id="图解国富论"><a href="#图解国富论" class="headerlink" title="图解国富论"></a>图解国富论</h2><h3 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h3><center><img src="https://i.loli.net/2021/02/19/BdyoL4ApZMlK2hw.png" width = "500"  /></center>
+
+<p>如图所示，第一篇中叙述了商品交换中最广泛的问题，这个问题涉及到所有的市场交换行为。</p>
+<p>首先，所有的劳动产物都有自然的参与。</p>
+<p>在任何一次市场行为中，商品都至少经由三种阶级中的一种或多种被生产出来。分工加强了人们的生产效率，因而人们的消耗速度低于生产速度，这是整个社会财富能够不断积累的根本原因。</p>
+<p>在每一次市场交换的过程中，商品卖出所获得的钱财都会被用来偿还三个阶级垫付的成本，属于地主的部分是地租，资本家的部分是利润，工人的部分是工资。</p>
+<h3 id="第二篇"><a href="#第二篇" class="headerlink" title="第二篇"></a>第二篇</h3><center><img src="https://i.loli.net/2021/02/19/D2JKha8qMpnyLkP.png" width = "500"  /></center>
+
+<p>第二篇中叙述了单一个人、产业、甚至国家的财富流通和积累过程。这里为了方便，将个人、产业还有国家都认为是一个单一的经济体。</p>
+<p>图中的除了黑色箭头外的每一个箭头都可以理解为第一篇中的一个循环，即第一篇中叙述的交换过程构成了第二篇中资本流动的基础。</p>
+<p>一个经济体的所有财产会被分为生活资料、固定资本、流动资本三个部分。当然这三个部分最终的源头其实都是自然资源。</p>
+<p>图中红色部分的循环是消耗资本的过程，而绿色部分的循环则是期望资本能够得到增殖的过程。<br>生活资料是经济体所必须消耗的部分，而支撑经济体健壮性的则是固定资本，固定资本是一个抽象概念，它可以是机器、建筑、人才和技术等等。而流动资本则是不断周转用来补充前两者的资本。<br>因而，一个经济体最主要的目标其实是追求无穷尽的更好的生活资料，而这一目标的表现，就在于拥有大量的固定资本。人们都有囤积固定资本的倾向，流动资本如果长期不转化为固定资本，或是用于增殖，那么它除了被消耗以外就没有用处。<br>可以说，人们获得流动资本的最终目的是将其富余部分转变为固定资本，尽管投资和借贷的目的是为了获得更多的流动资本，但究其根本，不过也是为了更好的将流动资本转换为固定资本。</p>
+<h3 id="第三篇"><a href="#第三篇" class="headerlink" title="第三篇"></a>第三篇</h3><center><img src="https://i.loli.net/2021/02/19/OrT9dUNWXM8YvgH.png" width = "600"  /></center>
+第三篇叙述的，则是资本在不同行业，不同经济体之间呈现出的不同状态和性质。
+依据不同行业资本性质的不同，它们对经济的推动作用是不同的，能够跨越的地区大小和接触到其他资本的量也是不同的，在不同的发展时期，不同行业的重要性也是不同的。
+但是不同行业之间最终连携成了一个完整的大生态，单一的经济体成为了产业链，甚至是多条产业链，使得人类改造自然的能力不断增强，经济体不断健壮发展起来。
+
+<h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>国富论的前三篇，其实从微观到宏观描述了整个经济系统。<br>首先描述每次交易的性质，其次描述单个经济体通过多次交易积累财富的过程，最后描述多种不同的经济体的不同特点。由下到上层层递进。</p>
+<h2 id="经济系统与生物进化的相似性"><a href="#经济系统与生物进化的相似性" class="headerlink" title="经济系统与生物进化的相似性"></a>经济系统与生物进化的相似性</h2><p>经济系统与生物有机体生存的方式非常类似。<br>微观上，经济系统中的个人需要从环境中采集资源，然后进行加工，转化为自己所需的物品以供消费,并期待从中能够积累下一点资本。这一点上就好像每个生物都需要从环境中收集能量，并存储下来以备他用。<br>宏观上，不同的个人和经济体之间通过货币进行财富交换，而不同生物也需要与自然环境还有其它生物交换能量。<br>甚至，经济体还能够比作不同的细胞，血液兼职市场与物流的角色，细胞们通过血液进行物质交换和能量的交换，前者的媒介是物质本身，而后者的媒介则是存在于ATP中的化学能。<br>非常明确的一点是，两者一定都要从环境中获取能量，然后一部分用于消费，一部分用于存储和自身的成长。人体吸收能量后每天都会消费掉维持日常活动的能量，但是也会积累下一部分，这部分日积月累的能量使得人从孩童成长为成人，经济体也是，人们日常生活需要消费许多劳动产物，但是却总会有剩余的部分留下来，不断地积累，成为产业。</p>
+<h2 id="经济系统与需求理论的关系"><a href="#经济系统与需求理论的关系" class="headerlink" title="经济系统与需求理论的关系"></a>经济系统与需求理论的关系</h2><h2 id="经济系统对游戏系统设计的指导意义"><a href="#经济系统对游戏系统设计的指导意义" class="headerlink" title="经济系统对游戏系统设计的指导意义"></a>经济系统对游戏系统设计的指导意义</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BD%E5%AF%8C%E8%AE%BA/" rel="tag"># 国富论</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92/" rel="tag"># 游戏策划</a>
+              <a href="/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" rel="tag"># 经济学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/18/03%E2%80%94%E2%80%94%E5%9B%BD%E5%AF%8C%E8%AE%BA%E6%80%BB%E7%BB%93%E7%AC%AC%E4%B8%89%E7%AF%87/" rel="prev" title="03——国富论总结第三篇">
+      <i class="fa fa-chevron-left"></i> 03——国富论总结第三篇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统框架"><span class="nav-number">1.</span> <span class="nav-text">系统框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#摘要"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">摘要</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解国富论"><span class="nav-number">1.1.</span> <span class="nav-text">图解国富论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一篇"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二篇"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三篇"><span class="nav-number">1.1.3.</span> <span class="nav-text">第三篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本章小结"><span class="nav-number">1.1.4.</span> <span class="nav-text">本章小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经济系统与生物进化的相似性"><span class="nav-number">1.2.</span> <span class="nav-text">经济系统与生物进化的相似性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经济系统与需求理论的关系"><span class="nav-number">1.3.</span> <span class="nav-text">经济系统与需求理论的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经济系统对游戏系统设计的指导意义"><span class="nav-number">1.4.</span> <span class="nav-text">经济系统对游戏系统设计的指导意义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kiritsuguyb"
+      src="/images/timg.jpg">
+  <p class="site-author-name" itemprop="name">kiritsuguyb</p>
+  <div class="site-description" itemprop="description">月明霁君忧，拨云不见愁</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiritsuguyb</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
