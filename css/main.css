@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffb5;
+  background: #3bfe30;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1735,6 +1735,8 @@ pre .javascript .function {
 .post-body img,
 .post-body video {
   margin-bottom: 20px;
+  margin-right: 0;
+  margin-left: 0;
 }
 .post-body .video-container {
   height: 0;
@@ -2144,6 +2146,12 @@ ul.breadcrumb li + li:last-child {
 }
 .tag-cloud a:hover {
   color: var(--link-hover-color) !important;
+}
+p {
+  text-indent: 2em; /*首行缩进*/
+}
+br {
+  text-indent: 2em; /*首行缩进*/
 }
 hr {
   height: 2px;

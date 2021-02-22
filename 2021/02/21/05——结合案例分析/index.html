@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":36,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="游戏案例分析——自走棋自走棋游戏流程先来看看自走棋游戏资源的游戏流程：     在游戏的开始，系统会随机提供几张武将卡牌供玩家选择，同时给玩家提供初始金币以供玩家购买武将卡牌。 没有被玩家选中的卡牌会进入弃牌堆，而被选中的卡牌会进入玩家手牌。 这里玩家的手牌是一个资源存储空间，可以认为玩家需要在有限的空间内对自己的牌型进行选择和决策。 而从自己的手牌中，玩家需要选择真正上场的武将与其他玩家进行对战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05——结合案例分析">
+<meta property="og:url" content="http://yoursite.com/2021/02/21/05%E2%80%94%E2%80%94%E7%BB%93%E5%90%88%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="KiritsuguybのBlog">
+<meta property="og:description" content="游戏案例分析——自走棋自走棋游戏流程先来看看自走棋游戏资源的游戏流程：     在游戏的开始，系统会随机提供几张武将卡牌供玩家选择，同时给玩家提供初始金币以供玩家购买武将卡牌。 没有被玩家选中的卡牌会进入弃牌堆，而被选中的卡牌会进入玩家手牌。 这里玩家的手牌是一个资源存储空间，可以认为玩家需要在有限的空间内对自己的牌型进行选择和决策。 而从自己的手牌中，玩家需要选择真正上场的武将与其他玩家进行对战">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/Whm9vaKJ36AdHnp.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/1rgPKWo7cJ8wQea.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/hV2O83NDKj1YorH.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/zuBWxwiHkMjUlsy.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/GnvVrRYB7zZWKJD.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/21/WtGk7R2csr1xHKV.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/22/Fld7HYJOEaxh5y3.png">
+<meta property="article:published_time" content="2021-02-21T11:18:30.000Z">
+<meta property="article:modified_time" content="2021-02-22T06:07:29.770Z">
+<meta property="article:author" content="kiritsuguyb">
+<meta property="article:tag" content="国富论">
+<meta property="article:tag" content="游戏策划">
+<meta property="article:tag" content="经济学">
+<meta property="article:tag" content="自走棋">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/21/Whm9vaKJ36AdHnp.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/02/21/05%E2%80%94%E2%80%94%E7%BB%93%E5%90%88%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>05——结合案例分析 | KiritsuguybのBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KiritsuguybのBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">阿丝爱学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/21/05%E2%80%94%E2%80%94%E7%BB%93%E5%90%88%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/timg.jpg">
+      <meta itemprop="name" content="kiritsuguyb">
+      <meta itemprop="description" content="月明霁君忧，拨云不见愁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KiritsuguybのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          05——结合案例分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-21 19:18:30" itemprop="dateCreated datePublished" datetime="2021-02-21T19:18:30+08:00">2021-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-22 14:07:29" itemprop="dateModified" datetime="2021-02-22T14:07:29+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B3%E4%BA%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/" itemprop="url" rel="index"><span itemprop="name">关于国富论一个游戏策划所需要知道的一切</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="游戏案例分析——自走棋"><a href="#游戏案例分析——自走棋" class="headerlink" title="游戏案例分析——自走棋"></a><center>游戏案例分析——自走棋</center></h1><h2 id="自走棋游戏流程"><a href="#自走棋游戏流程" class="headerlink" title="自走棋游戏流程"></a>自走棋游戏流程</h2><p>先来看看自走棋游戏资源的游戏流程：</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/21/Whm9vaKJ36AdHnp.png" height=600>
+</div>
+
+<p>在游戏的开始，系统会随机提供几张武将卡牌供玩家选择，同时给玩家提供初始金币以供玩家购买武将卡牌。</p>
+<p>没有被玩家选中的卡牌会进入弃牌堆，而被选中的卡牌会进入玩家手牌。</p>
+<p>这里玩家的手牌是一个资源存储空间，可以认为玩家需要在有限的空间内对自己的牌型进行选择和决策。</p>
+<p>而从自己的手牌中，玩家需要选择真正上场的武将与其他玩家进行对战。</p>
+<p>如果将一个队伍的强度认为是一个战斗力数值，那么这个战斗力数值受到队伍摆放，队伍人数，队伍阵容，队伍等级的影响。其中，队伍阵容会从两个维度上影响单体武将的强度，即阵营和职业，具有特定阵营和职业的武将一同出场，会给这些武将加上特定的buff。</p>
+<p>这幅图的右下角，在所有武将上场对局之后，会产出对局结果。</p>
+<p>这个对局结果包含两部分，首先是会向玩家提供金币，其次是会影响玩家的血量。</p>
+<p>玩家的经济有三个去处：</p>
+<ol>
+<li>提供利润</li>
+<li>刷新武将</li>
+<li>购买武将</li>
+</ol>
+<p>在获得金币之后，系统会在提供新的武将以供选择，至此，游戏就回到了初始时，系统提供武将和金币的情况，可以认为是走完了一个游戏回合，如此往复。</p>
+<p>玩家在回合开始时做的决策，会影响到本回合对局时的结果，而这个结果对下一个回合的金币和武将的获取情况产生了直接的影响。而对局的结果又反过来约束了玩家在回合开始时的决策。</p>
+<h2 id="自走棋的上中下游"><a href="#自走棋的上中下游" class="headerlink" title="自走棋的上中下游"></a>自走棋的上中下游</h2><p>我们把上图重画如下：</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/21/1rgPKWo7cJ8wQea.png" height=600/>
+</div>
+
+<p>在本图中，特别标注了游戏的上中下游，即将整个完整的游戏拆开分析。</p>
+<p>在逐个分析游戏的几个系统阶段之前，先将资本的四种用途重申如下：</p>
+<blockquote>
+<ul>
+<li>一农业，是获取社会每年要使用和消费的原生产物。</li>
+<li>二制造业，是制造适于使用和消费的原生产物。</li>
+<li>三批发业，是将多余的原生产物或制成品运至缺乏它们的地方</li>
+<li>四零售业，是为适应临时需求而将一部分原生产物或制成品分成更小的部分</li>
+</ul>
+</blockquote>
+<h3 id="上游"><a href="#上游" class="headerlink" title="上游"></a>上游</h3><p>上游是一个随机产出环节。</p>
+<p><strong>这个部分代表了整个系统中的农业部分</strong>，系统在这里随机产出资源，玩家通过某种操作进行资源的采集，在这里这项操作被简化为购买。</p>
+<h3 id="中游"><a href="#中游" class="headerlink" title="中游"></a>中游</h3><p>中游是将系统提供的卡牌收集到手牌中合成更高级武将的环节，这个环节，与麻将的摸牌方式具有高度的相似性。</p>
+<p>我们很快会发现，在游戏流程的这个部分，自走棋是一个合成游戏。即收集不同武将并合成更高星武将的过程，可以看成多路合成游戏，本质上与2048、合成大西瓜、召唤与合成等游戏没有本质上的区别，甚至于俄罗斯方块和消除类游戏也非常类似。</p>
+<p><strong>究其原因，是因为在游戏的中游这块，对应的是系统中的制造业部分。</strong></p>
+<p>制造业的目的就是将原生产物变得适于使用和消费。这通常意味着，更高的价值密度，或者说更小的体积，更高的数值。</p>
+<p><strong>合成类游戏就与制造业的特点相符合</strong>。举例而言，2048中通过多个小数字合成大数字，2048中一共有16个格子，数字2和数字2048占据的格数是一样的，但是同样占据一格，数字2048获得的分数确实数字2的1024倍；合成大西瓜中两个小水果合成一个大水果，但大水果的半径一定小于小水果的$\sqrt2$倍，从而大水果的面积比两个小水果的面积总和要小，却有比两个小水果更高的分数；甚至是俄罗斯方块，也可以认为是在通过消除掉占据大量空间的方块，而获得更多的价值空间；自走棋的武将收集机制也如此，通过3个低星合成高星，高星和低星英雄同样占据一个空间，却有更高的数值。</p>
+<p>那么自走棋的中游部分与其他合成消除类游戏的不同点在哪里呢？</p>
+<p>区别在于，其他游戏，如2048和合成大西瓜，其资源空间较大，合成的链条也很长。2048可以用16格的空间从2一直合成到2048，合成链条的长度为9；合成大西瓜的空间是连续的，从山竹到合成大西瓜，其合成链条也在8以上。但自走棋的中游部分，资源空间小，因而合成的链条长度也很短，只有2，即从一星到二星，二星到三星，但是相对而言合成链的数目是巨大的，在前两者中需要合成的只有数字本身，或水果本身，但在自走棋中，每个武将英雄都是一个合成目标。</p>
+<p><strong>总结而言，自走棋和麻将的摸牌，是对合成类游戏的一种变异，增加了多条合成路线，而缩短了合成链条的长度</strong>。</p>
+<h3 id="中下游、下游"><a href="#中下游、下游" class="headerlink" title="中下游、下游"></a>中下游、下游</h3><p>中下游和下游部分的输入是中游获得的武将，输出是这两个环节的结果，即胜负输赢。</p>
+<p>之所以自走棋是一个复杂的游戏，其原因就在于其资源的流动长度和玩家的决策链够长，决策选项也够多。</p>
+<p>在2048和大西瓜中，合成高级物品就是最终目的，无论是2048这个数字，还是大西瓜，合成出来之后只会占据一个资源空间。但是自走棋更进一步，合成高级物品是玩家的目的之一，但更进一步的目的是用高级物品在下一个阶段的游戏中获得胜利。</p>
+<p>实际上，2048的高级物品也有下一阶段的用途，即分数，更高级的物品意味着更高级的分数，而分数才是最终的游戏目标，自走棋也是如此，如果将英雄和武将的数值单纯累加，就能认为是一种“分数”。</p>
+<p>但是<strong>2048和大西瓜的分数是线性的</strong>，玩家能够轻松预测结果，因此体验就是以不断合成更高级的物品为目的的，而<strong>自走棋的“分数”是非线性的</strong>。通过武将的攻击防御、血量、移速、技能等等维度，游戏将这个最后分数的计算复杂化，又增加了阵营和职业两种羁绊，使得差不多价值的武将阵容之间的胜负变得难以预估。</p>
+<p>这个过程有点像神经网络，输入是几个不同武将的组合，通过一个特定的变换矩阵，能够输出该阵容的数值强度以较高低。</p>
+<p>总而言之，如果抽象来看，中下游的游戏内容就是在将游戏中玩家掌握的资源转化为“分数”，对于简单的游戏，这个转化过程是单纯线性的，对于复杂的游戏，则需要经过各种非线性的计算。</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>上一个阶段实际上对应着商业和市场竞争，如果己方的阵容强于对手，则意味着产业建设合理，则得利，获得下一阶段更优的资源继续发展，反之则败，利益就要受到损失。</p>
+<p>这就是上个阶段带来的结果。</p>
+<p>之前也说过，玩家在本回合的胜利和失败，会影响到玩家血量和下回合玩家获得的金钱数额。</p>
+<p>而玩家的血量是直接挂钩玩家最终输赢的属性，<strong>这里就可以认为血量就是玩家最关键的生活资料</strong>。</p>
+<p>整个游戏的回合循环，可以用下面的图简单示意。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/21/hV2O83NDKj1YorH.png" width=400/>
+</div>
+
+<h2 id="用经济系统分析自走棋的系统"><a href="#用经济系统分析自走棋的系统" class="headerlink" title="用经济系统分析自走棋的系统"></a>用经济系统分析自走棋的系统</h2><h3 id="经济循环"><a href="#经济循环" class="headerlink" title="经济循环"></a>经济循环</h3><p>先把经济系统的简单流图放在这里：</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/21/zuBWxwiHkMjUlsy.png" width=400/>
+</div>
+
+<p>然后我们不难得到这张图中的概念与自走棋游戏内概念的对应版本：</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/21/GnvVrRYB7zZWKJD.png" width=400/>
+</div>
+
+<p>图中蓝色部分代表游戏中对应的概念。</p>
+<p>可以看到，<strong>系统在游戏中扮演着自然资源的角色</strong>，也就是土地，从系统中生出武将卡牌，就好像土地产出资源一样。</p>
+<p>玩家的<strong>手牌武将就是玩家的固定资产</strong>，玩家还有<strong>流动资产，即金币</strong>。系统在这里除了扮演自然资源的角色，还扮演者其他商品所有者的角色，即系统扮演了一切外部资源来源，无论是土地还是其他经济体都由系统扮演。</p>
+<p>因而我们看到，玩家使用流动资产，与系统换取抽卡机会，并买入新的卡牌。这一过程贴合了流动资产向固定资产转化的过程，并且其中还包含<strong>金币的两种用途</strong>，第一是<strong>直接购买武将</strong>，这是实打实的转化，第二是<strong>刷新武将</strong>，这就存在机会主义带来的<strong>浪费</strong>，这部分金钱会被系统完全吸收。</p>
+<p>自走棋中流动资产的使用甚至包含了借贷这一环节，尽管没有显式的借贷行为，但是富余的金钱会产出利息，这一机制客观上防止了玩家一味的进行浪费。</p>
+<p><strong>固定资产会被投入到玩家对局，从而直接影响到下一个阶段的生活资料，这里是血量，而血量才是游戏胜负的最终条件。这一过程也符合我们说的，固定资产最终是为生活资料服务的。</strong></p>
+<h3 id="产业发展"><a href="#产业发展" class="headerlink" title="产业发展"></a>产业发展</h3><div align=center>
+<img src="https://i.loli.net/2021/02/21/WtGk7R2csr1xHKV.png" width=400/>
+</div>
+
+<p>在上一章里我们已经把自走棋的游戏流程分成几个不同的环节，即上中下游，这里我们做一个总结。</p>
+<p>整个游戏就好像是玩家在经营一个由武将构成的产业链一般。</p>
+<p>在最开始，由土地产出所有的资源，玩家在这个阶段扮演的是农业家的角色，玩家能做的只有买或者不买，进而从土地随机给予的资源中择其所需。</p>
+<p>中游，玩家扮演的是制造业者，不断试图将自己获得的土地原生产物（一星武将）合成成更高级的武将，这个过程和工人把羊毛变成羊毛衫的性质没有不同。</p>
+<p>在每一轮的中游和上游，玩家都能生产出不同的新的制造业产品。</p>
+<p>而到了下游，这下产品就会被集中起来，形成一种类似产业链一样的整体，这个产业链的健壮程度由多种因素决定，就好像现实中一样，绝非线性叠加所能模拟。</p>
+<p>游戏的前期，土地产出资源在所有人手中都不够丰富，这个产业竞争更像是小作坊之间的竞争，而到了后期，所有人手中都聚集了大量的资本，这时比拼的就是大的产业链竞争。</p>
+<p><strong>可以说，自走棋在抽象的层面上，模塑出了玩家从零开始，逐步发展自己的产业帝国的体验。</strong></p>
+<h3 id="武将刷新概率"><a href="#武将刷新概率" class="headerlink" title="武将刷新概率"></a>武将刷新概率</h3><p>自走棋还有另一个很重要的设计点，就是武将的刷新概率。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/22/Fld7HYJOEaxh5y3.png" width=400/>
+</div>
+
+<p>每个武将有自己的稀有度。</p>
+<p>可以看到，在前期，低稀有度的武将刷新概率高，高稀有度刷新概率低。</p>
+<p>随着玩家等级提高，高稀有度的武将的刷新概率逐步提升，挤兑低稀有度的武将。</p>
+<p>如此以往到了后期，史诗和精良的武将综合概率达到接近60%，而普通和优秀的武将出现概率只有约30%。</p>
+<p>这就出现了一种现象，玩家如果希望追出低稀有度的高星武将，在前期完成的效率会更高，越到后期追一个低稀有度的武将概率越低。因此，玩家被武将的刷新概率胁迫，必须在对应的时期追对应稀有度的武将。</p>
+<p>上一章我们把武将比作产业，本章也有同样的比喻。</p>
+<p><strong>自走棋中武将刷新概率的设计，拟合了现实中产业链固化的现象</strong>，在国家发展初期，能够选择的产业必然是那些低门槛收益不高的产业，而越是发达国家，就越是需要选择高端产业，这时候追求低端产业，只会得不偿失。好比美国目前的产业空心现象，尽管底层白人需要制造业的回归，但制造业的回归却阻力重重。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BD%E5%AF%8C%E8%AE%BA/" rel="tag"># 国富论</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92/" rel="tag"># 游戏策划</a>
+              <a href="/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" rel="tag"># 经济学</a>
+              <a href="/tags/%E8%87%AA%E8%B5%B0%E6%A3%8B/" rel="tag"># 自走棋</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/19/04%E2%80%94%E2%80%94%E4%BB%8E%E5%9B%BD%E5%AF%8C%E8%AE%BA%E4%B8%AD%E6%8F%90%E7%82%BC%E5%87%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" rel="prev" title="04——从国富论中提炼出的系统框架">
+      <i class="fa fa-chevron-left"></i> 04——从国富论中提炼出的系统框架
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏案例分析——自走棋"><span class="nav-number">1.</span> <span class="nav-text">游戏案例分析——自走棋</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自走棋游戏流程"><span class="nav-number">1.1.</span> <span class="nav-text">自走棋游戏流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自走棋的上中下游"><span class="nav-number">1.2.</span> <span class="nav-text">自走棋的上中下游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上游"><span class="nav-number">1.2.1.</span> <span class="nav-text">上游</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中游"><span class="nav-number">1.2.2.</span> <span class="nav-text">中游</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中下游、下游"><span class="nav-number">1.2.3.</span> <span class="nav-text">中下游、下游</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">1.2.4.</span> <span class="nav-text">结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用经济系统分析自走棋的系统"><span class="nav-number">1.3.</span> <span class="nav-text">用经济系统分析自走棋的系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#经济循环"><span class="nav-number">1.3.1.</span> <span class="nav-text">经济循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产业发展"><span class="nav-number">1.3.2.</span> <span class="nav-text">产业发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#武将刷新概率"><span class="nav-number">1.3.3.</span> <span class="nav-text">武将刷新概率</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kiritsuguyb"
+      src="/images/timg.jpg">
+  <p class="site-author-name" itemprop="name">kiritsuguyb</p>
+  <div class="site-description" itemprop="description">月明霁君忧，拨云不见愁</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiritsuguyb</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
