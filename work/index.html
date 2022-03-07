@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":36,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="作品列表游戏、Unity相关SpaceWalk 漫步者时间：2021年1月     漫步者用极简的UI和物理模拟了太空漫游的体验，获得更多的推进物资让自己生存的更久吧！ 玩家需要收集地图中的小菱形，以使自己获得前进的动力。 游戏只需要使用一个按钮游玩，当玩家不做任何事情时，玩家身上自带的转向力会使玩家在空间中漫无目的的飘荡。 而当玩家按下按钮时，玩家会朝着当前的方向施加推力，从而推动自己前进，获得">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KiritsuguybのBlog">
+<meta property="og:url" content="http://yoursite.com/work/index.html">
+<meta property="og:site_name" content="KiritsuguybのBlog">
+<meta property="og:description" content="作品列表游戏、Unity相关SpaceWalk 漫步者时间：2021年1月     漫步者用极简的UI和物理模拟了太空漫游的体验，获得更多的推进物资让自己生存的更久吧！ 玩家需要收集地图中的小菱形，以使自己获得前进的动力。 游戏只需要使用一个按钮游玩，当玩家不做任何事情时，玩家身上自带的转向力会使玩家在空间中漫无目的的飘荡。 而当玩家按下按钮时，玩家会朝着当前的方向施加推力，从而推动自己前进，获得">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/EhID9Ou5KaHM8AS.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/C2MVh1LPSlZi8Fc.gif">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/H2Qs64BGTySFhec.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/FZKqlXyrT6znbJa.gif">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/4ljchZ5OatPIk6p.gif">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/O3Cybu2XPA4LI5p.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/ROm4wZ68oClWpQM.gif">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/adBpH3xchuWqTr1.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/ZRNk2hPJMyapI6e.gif">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/I4V9XpQuorn5Cx8.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/WG1Y6jR3tpfghJZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/GLf8uwi3BohHaKl.png">
+<meta property="article:published_time" content="2022-03-06T07:00:04.000Z">
+<meta property="article:modified_time" content="2022-03-07T13:00:06.065Z">
+<meta property="article:author" content="kiritsuguyb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/25/EhID9Ou5KaHM8AS.jpg">
+
+<link rel="canonical" href="http://yoursite.com/work/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | KiritsuguybのBlog
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KiritsuguybのBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">阿丝爱学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-study">
+
+    <a href="/study/" rel="section"><i class="fa fa-book fa-fw"></i>学业经历</a>
+
+  </li>
+        <li class="menu-item menu-item-game">
+
+    <a href="/game/" rel="section"><i class="fa fa-gamepad fa-fw"></i>游戏经历</a>
+
+  </li>
+        <li class="menu-item menu-item-career">
+
+    <a href="/career/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>实习经历</a>
+
+  </li>
+        <li class="menu-item menu-item-work">
+
+    <a href="/work/" rel="section"><i class="fa fa-trophy fa-fw"></i>相关作品</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>相关文章</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="作品列表"><a href="#作品列表" class="headerlink" title="作品列表"></a><div align = center>作品列表</h1><h3 id="游戏、Unity相关"><a href="#游戏、Unity相关" class="headerlink" title="游戏、Unity相关"></a>游戏、Unity相关</h3><h4 id="SpaceWalk-漫步者"><a href="#SpaceWalk-漫步者" class="headerlink" title="SpaceWalk 漫步者"></a>SpaceWalk 漫步者</h4><p><strong>时间：2021年1月</strong></p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/EhID9Ou5KaHM8AS.jpg"width=500/><br>
+<img src="https://s2.loli.net/2022/03/07/C2MVh1LPSlZi8Fc.gif"/>
+</div>
+漫步者用极简的UI和物理模拟了太空漫游的体验，获得更多的推进物资让自己生存的更久吧！
+玩家需要收集地图中的小菱形，以使自己获得前进的动力。
+游戏只需要使用一个按钮游玩，当玩家不做任何事情时，玩家身上自带的转向力会使玩家在空间中漫无目的的飘荡。
+而当玩家按下按钮时，玩家会朝着当前的方向施加推力，从而推动自己前进，获得菱形推进器。
+玩家的菱形推进器会不断地消耗，当玩家失去所有菱形推进器时，在数秒之内玩家会输掉游戏。
+
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV18A411M7iK/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h4 id="Clara"><a href="#Clara" class="headerlink" title="Clara"></a>Clara</h4><p><strong>时间：2020年12月</strong><br>少女 Clara 独自一人离开家乡冒险，在困顿迷茫之际她邂逅了一只名叫Blue的青鸟。为了帮助青鸟寻找失落的家园，她们一同踏上了冒险的旅途。<br>在危机四伏、谜题迭出的世界里，Clara 需要与 Blue 一起躲避危险、破开谜题，找到前进的路，并收集信物来慢慢了解彼此的故事。<br>玩家操控Clara和青鸟进行解密，在搜集了灵草之后可以释放青鸟，从而操控青鸟进行游戏。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/H2Qs64BGTySFhec.jpg"width=600/><br>
+<img src="https://s2.loli.net/2022/03/07/FZKqlXyrT6znbJa.gif" height=160/><img src="https://s2.loli.net/2022/03/07/4ljchZ5OatPIk6p.gif" height=160/>
+</div>
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV1hb4y1R72P/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h4 id="水母快跑"><a href="#水母快跑" class="headerlink" title="水母快跑"></a>水母快跑</h4><p><strong>时间：2019年12月</strong><br>玩家操控一只在海底生活的小水母，躲避愈来愈高的岩浆，不断向上冲刺。<br>时刻关注小水母的能量条，注意休息，否则会无法前进。<br>突破各种漩涡和水流不断前进。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/O3Cybu2XPA4LI5p.png" height=300/>
+<img src="https://s2.loli.net/2022/03/07/ROm4wZ68oClWpQM.gif"/>
+</div>
+
+<h4 id="剑客塔防"><a href="#剑客塔防" class="headerlink" title="剑客塔防"></a>剑客塔防</h4><p><strong>时间：2019年6月</strong></p>
+<p>游戏的主题是玩家通过控制剑客和怪物战斗来保护己方的基地。<br>玩家可以配置剑客的生成，并控制剑客的技能使用，来攻击怪物，阻挡怪物前进，而怪物会在整个地图中心不断生成，随着时间的增加不断增强。<br>游戏实现了简单的联机功能，玩家能够在局域网内创建并加入房间，共同游戏。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/adBpH3xchuWqTr1.jpg" width=700/><img src="https://s2.loli.net/2022/03/07/ZRNk2hPJMyapI6e.gif"/>
+</div>
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV1wU4y1s7UZ/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h4 id="飞机大作战"><a href="#飞机大作战" class="headerlink" title="飞机大作战"></a>飞机大作战</h4><p><strong>时间：2017年7月</strong></p>
+<p>一个简单的雷电类弹幕游戏demo。使用C++开发。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/I4V9XpQuorn5Cx8.png" height=500/>
+</div>
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV11h411r7bb/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h4 id="怪怪水族箱"><a href="#怪怪水族箱" class="headerlink" title="怪怪水族箱"></a>怪怪水族箱</h4><p><strong>时间：2017年7月</strong></p>
+<p>一个简单的捕鱼达人游戏demo。使用c++开发。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/WG1Y6jR3tpfghJZ.png" width=700/>
+</div>
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV1xb4y1R7as/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h4 id="小v的冰雪世界"><a href="#小v的冰雪世界" class="headerlink" title="小v的冰雪世界"></a>小v的冰雪世界</h4><p><strong>时间：2017年7月</strong></p>
+<p>一个简单的双人弹弹堂游戏demo。同样使用c++开发。</p>
+<div align=center>
+<img src="https://i.loli.net/2021/02/25/GLf8uwi3BohHaKl.png"width=700 alt="小v的冰雪世界"/>
+</div>
+
+<p><strong>游戏参考视频</strong>：<a href="https://www.bilibili.com/video/BV1wh411k7bz/" target="_blank" rel="noopener">猛戳这里</a></p>
+<h3 id="音效设计"><a href="#音效设计" class="headerlink" title="音效设计"></a>音效设计</h3><h4 id="头号玩家片段音效设计"><a href="#头号玩家片段音效设计" class="headerlink" title="头号玩家片段音效设计"></a>头号玩家片段音效设计</h4><p><strong>时间：2019年12月</strong></p>
+<div style="position: relative;width: 70%;height: 0;padding-bottom: 40%;margin-left: 100px;">
+<iframe 
+src="//xbeibeix.com/api/bilibili/biliplayer/?url=BV1pK4y1S7d3" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> 
+</iframe>
+</div>
+
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><h4 id="游戏trailer动画——A-Shaman’s-Mistake"><a href="#游戏trailer动画——A-Shaman’s-Mistake" class="headerlink" title="游戏trailer动画——A Shaman’s Mistake"></a>游戏trailer动画——A Shaman’s Mistake</h4><p><strong>时间：2018年12月</strong></p>
+<div style="position: relative;width: 70%;height: 0;padding-bottom: 40%;margin-left: 100px;">
+<iframe 
+src="//xbeibeix.com/api/bilibili/biliplayer/?url=BV15r4y1A7YK" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> 
+</iframe>
+</div>
+
+<h4 id="科普动画——拦精灵"><a href="#科普动画——拦精灵" class="headerlink" title="科普动画——拦精灵"></a>科普动画——拦精灵</h4><p><strong>时间：2018年7月</strong></p>
+<div style="position: relative;width: 70%;height: 0;padding-bottom: 40%;margin-left: 100px;">
+<iframe 
+src="//xbeibeix.com/api/bilibili/biliplayer/?url=BV1q54y1Y76p" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> 
+</iframe>
+</div>
+
+<h4 id="动画短片——colorful"><a href="#动画短片——colorful" class="headerlink" title="动画短片——colorful"></a>动画短片——colorful</h4><p><strong>时间：2018年5月</strong></p>
+<div style="position: relative;width: 70%;height: 0;padding-bottom: 40%;margin-left: 100px;">
+<iframe 
+src="//xbeibeix.com/api/bilibili/biliplayer/?url=BV1Th411k7dm" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> 
+</iframe>
+</div>
+
+<h4 id="个人动画小作业——绝地越狱大求杀"><a href="#个人动画小作业——绝地越狱大求杀" class="headerlink" title="个人动画小作业——绝地越狱大求杀"></a>个人动画小作业——绝地越狱大求杀</h4><p><strong>时间：2017年12月</strong></p>
+<div style="position: relative;width: 70%;height: 0;padding-bottom: 40%;margin-left: 100px;">
+<iframe 
+src="//xbeibeix.com/api/bilibili/biliplayer/?url=BV13y4y1J7oP" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> 
+</iframe>
+</div>
+
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作品列表"><span class="nav-number">1.</span> <span class="nav-text">作品列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏、Unity相关"><span class="nav-number">1.0.1.</span> <span class="nav-text">游戏、Unity相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SpaceWalk-漫步者"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">SpaceWalk 漫步者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Clara"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">Clara</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#水母快跑"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">水母快跑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剑客塔防"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">剑客塔防</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞机大作战"><span class="nav-number">1.0.1.5.</span> <span class="nav-text">飞机大作战</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怪怪水族箱"><span class="nav-number">1.0.1.6.</span> <span class="nav-text">怪怪水族箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小v的冰雪世界"><span class="nav-number">1.0.1.7.</span> <span class="nav-text">小v的冰雪世界</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音效设计"><span class="nav-number">1.0.2.</span> <span class="nav-text">音效设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#头号玩家片段音效设计"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">头号玩家片段音效设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画"><span class="nav-number">1.0.3.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#游戏trailer动画——A-Shaman’s-Mistake"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">游戏trailer动画——A Shaman’s Mistake</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#科普动画——拦精灵"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">科普动画——拦精灵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动画短片——colorful"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">动画短片——colorful</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人动画小作业——绝地越狱大求杀"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">个人动画小作业——绝地越狱大求杀</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kiritsuguyb"
+      src="/images/timg.jpg">
+  <p class="site-author-name" itemprop="name">kiritsuguyb</p>
+  <div class="site-description" itemprop="description">月明霁君忧，拨云不见愁</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiritsuguyb</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

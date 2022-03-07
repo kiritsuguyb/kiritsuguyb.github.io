@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":36,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="王者荣耀英雄设计分析摘要在回顾了战斗数值调整的相关知识后，本想按照系统解构（核心玩法）——确定目标（聚焦点）——分析战斗因素（属性、公式）的方式路径来分析王者荣耀，但这似乎是个太过庞大的工程，且也不甚必要，因而本文就直接突入英雄本身的设计。 我们首先要看看，在既定的游戏机制（MOBA），既定的属性因素（攻击防御法强魔抗暴击格挡攻速移速cd等等等等）和既定的伤害计算公式下，王者荣耀是如何对它的英雄进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="王者荣耀英雄设计演变分析————以钟无艳为例">
+<meta property="og:url" content="http://yoursite.com/2022/03/06/%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E8%8B%B1%E9%9B%84%E8%AE%BE%E8%AE%A1%E6%BC%94%E5%8F%98%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="KiritsuguybのBlog">
+<meta property="og:description" content="王者荣耀英雄设计分析摘要在回顾了战斗数值调整的相关知识后，本想按照系统解构（核心玩法）——确定目标（聚焦点）——分析战斗因素（属性、公式）的方式路径来分析王者荣耀，但这似乎是个太过庞大的工程，且也不甚必要，因而本文就直接突入英雄本身的设计。 我们首先要看看，在既定的游戏机制（MOBA），既定的属性因素（攻击防御法强魔抗暴击格挡攻速移速cd等等等等）和既定的伤害计算公式下，王者荣耀是如何对它的英雄进">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/CYLcDhFWAlVr5MX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/YLetbzqIrKNhsZH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/hgNTtZ3JGwBe4Sq.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/RINkWmr2ipa5BjY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/j256DZfc9qiaHwO.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/elOaxEjMP1RTD4Q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/YyX6qZRGa8PmzK7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/P2tLdRI9XZD8oev.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/ws9QDuPO3vzYjbe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/2KZYHXIvpwPSM4W.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/LtEblpHKDUT7CzP.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/Yai2fTAWUQRuq3d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/R7rs3nkKS6EP8jo.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/3x4yKhW1RTLvqfE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/A87NcoHFOBWM24r.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/58WuGRzgVmk7LAn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/vfVIo1EdZijtlFh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/CzFNhGIJPUMloer.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/7zPsVnb1RCQ3mWg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/TiwRZbdFQXsyWn1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/g67zVFqEy9vwBLW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/oGLeszfDEdKWOan.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/CezgR37AMQNxqIL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/07/CzMqDBN8UuLkbYV.png">
+<meta property="article:published_time" content="2022-03-06T14:14:46.000Z">
+<meta property="article:modified_time" content="2022-03-06T16:41:41.918Z">
+<meta property="article:author" content="kiritsuguyb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/07/CYLcDhFWAlVr5MX.png">
+
+<link rel="canonical" href="http://yoursite.com/2022/03/06/%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E8%8B%B1%E9%9B%84%E8%AE%BE%E8%AE%A1%E6%BC%94%E5%8F%98%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>王者荣耀英雄设计演变分析————以钟无艳为例 | KiritsuguybのBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KiritsuguybのBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">阿丝爱学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-study">
+
+    <a href="/study/" rel="section"><i class="fa fa-book fa-fw"></i>学业经历</a>
+
+  </li>
+        <li class="menu-item menu-item-game">
+
+    <a href="/game/" rel="section"><i class="fa fa-gamepad fa-fw"></i>游戏经历</a>
+
+  </li>
+        <li class="menu-item menu-item-career">
+
+    <a href="/career/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>实习经历</a>
+
+  </li>
+        <li class="menu-item menu-item-work">
+
+    <a href="/work/" rel="section"><i class="fa fa-trophy fa-fw"></i>相关作品</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>相关文章</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/06/%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E8%8B%B1%E9%9B%84%E8%AE%BE%E8%AE%A1%E6%BC%94%E5%8F%98%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/timg.jpg">
+      <meta itemprop="name" content="kiritsuguyb">
+      <meta itemprop="description" content="月明霁君忧，拨云不见愁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KiritsuguybのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          王者荣耀英雄设计演变分析————以钟无艳为例
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-06 22:14:46" itemprop="dateCreated datePublished" datetime="2022-03-06T22:14:46+08:00">2022-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-07 00:41:41" itemprop="dateModified" datetime="2022-03-07T00:41:41+08:00">2022-03-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="王者荣耀英雄设计分析"><a href="#王者荣耀英雄设计分析" class="headerlink" title="王者荣耀英雄设计分析"></a>王者荣耀英雄设计分析</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在回顾了战斗数值调整的相关知识后，本想按照系统解构（核心玩法）——确定目标（聚焦点）——分析战斗因素（属性、公式）的方式路径来分析王者荣耀，但这似乎是个太过庞大的工程，且也不甚必要，因而本文就直接突入英雄本身的设计。</p>
+<p>我们首先要看看，在既定的游戏机制（MOBA），既定的属性因素（攻击防御法强魔抗暴击格挡攻速移速cd等等等等）和既定的伤害计算公式下，王者荣耀是如何对它的英雄进行设计规划的。这有助于我们抓住每个类别英雄的共性。</p>
+<p>我们知道王者中一共有六个大类的英雄：<strong>法师 战士 刺客 辅助 坦克 射手</strong>。</p>
+<p>本文</p>
+<ol>
+<li>从数据出发，简要分析了<strong>法师 战士 刺客 辅助 坦克 射手</strong>之间的基本不同</li>
+<li>具体到某一个大类下的子类，例如战士中分出的<strong>冲锋战士 重装战士 刺杀战士</strong>子类，分析了每个子类英雄的设计特点。</li>
+<li>分析了重装战士中的钟无艳的设计和调整历史和未来走向</li>
+</ol>
+<p>先抓共性，再抓特性。</p>
+<h2 id="大类职业特点"><a href="#大类职业特点" class="headerlink" title="大类职业特点"></a>大类职业特点</h2><p>这一部分试图分析一下六个职业的英雄的基本特点，其实结论我们都已经烂熟于心，不过这次我深入地记录了一下每个职业英雄的一些数据，让这些理性的数据来印证我们的主观结论。</p>
+<h3 id="王者荣耀英雄属性"><a href="#王者荣耀英雄属性" class="headerlink" title="王者荣耀英雄属性"></a>王者荣耀英雄属性</h3><p>先来看一下王者里面都有哪些英雄属性基础物理<strong>基础物理    基础生命    最大法力    物理防御    法术防御    攻速加成    基础移速    每五秒回血    每五秒回蓝</strong><br><strong>法术攻击    冷却缩减    暴击率    物理穿透    法术穿透    物理吸血    法术吸血    韧性</strong>    </p>
+<p>所有的属性包括以上几种，其中只有前九种是会在英雄本身成长的时候能够带来的属性，即<strong>基础物理    基础生命    最大法力    物理防御    法术防御    攻速加成    基础移速    每五秒回血    每五秒回蓝</strong></p>
+<p>而<strong>法术攻击    冷却缩减    暴击率    物理穿透    法术穿透    物理吸血    法术吸血    韧性</strong>八种属性，有且只有铭文和装备能够提供，当然有些属性，例如暴击率，是根据英雄而定的。</p>
+<p>而在基础物理    基础生命    最大法力    物理防御    法术防御    攻速加成    基础移速    每五秒回血    每五秒回蓝中，有的英雄是没有法力，而改用能量条的，因而最大法力和每五秒回蓝不好作为英雄之间的比较标准，而且其中的法术防御，所有的英雄统一都是从一级50法抗线性成长到15级169法抗，所以也没有比较价值。</p>
+<p>因而剩下比较有比较价值的数据就是<strong>基础物理    基础生命    物理防御    攻速加成    基础移速    每五秒回血</strong></p>
+<p>从这几个维度，已经足够看出在顶层的规划上，王者荣耀对不同英雄的属性投放原则了。</p>
+<h3 id="英雄数据分析"><a href="#英雄数据分析" class="headerlink" title="英雄数据分析"></a>英雄数据分析</h3><p>我记录了王者中不同职业的22个英雄，在相同铭文，不购买任何装备的情况下的裸数值成长曲线。</p>
+<p>我们知道在王者峡谷中，装备和铭文还有技能其实也占据了大量属性投放的空间：<br><img src="https://s2.loli.net/2022/03/07/CYLcDhFWAlVr5MX.png"/><br>装备，铭文和技能的变化性太过强烈，没有办法也没必要去抓，虽然光从英雄基础属性的角度去看，并不能判断英雄们实际的表现，但是能够帮助我们抓住不同职业英雄最最基本的共性，他们可以在自己的体验上开出花来，但必须符合一个职业的基本特征，即使个别英雄出现在职业上比较模糊的特点，也会符合两个到三个职业的特点，所以结合这些特点出发，我们能更好的理解英雄的设计和调整。</p>
+<p>下面就开始吧。</p>
+<p>我们记录的22个英雄分别是：<br><img src="https://s2.loli.net/2022/03/07/YLetbzqIrKNhsZH.png"/><br>举例而言，这是钟无艳在出装备前后所有的数值变化表：</p>
+<img src="https://s2.loli.net/2022/03/07/hgNTtZ3JGwBe4Sq.png"/>
+可以看出来，王者里英雄的基础数值随等级成长都是线性变化的。
+
+<p>这样设计有几个好处，首先是实现简单，不会耗费代码资源，同时也满足了基本的设计需求，设计师只要规定前期数值强度和后期数值强度，中间简单插值就可以了，调整平衡十分方便，对于玩家而言，线性增长也降低了理解难度，给普通玩家提供了低保体验。</p>
+<p>在收集完所有英雄的数据后，我尝试对英雄们的某一属性成长曲线绘图进行一个更直观的对比，以最大血量增长为例，绘制了22个英雄的生命成长曲线如下：<br><img src="https://s2.loli.net/2022/03/07/RINkWmr2ipa5BjY.png"/></p>
+<p>我尝试用不同的颜色区分了英雄的职业，用不同的线型区分英雄，从图中大概可以看出不同英雄不同职业在基础血量上的数值投放情况。</p>
+<p>我们大致能看出，绿色和浅蓝色，即辅助和坦克的生命值是比较高的，但坦克英雄的方差较大，而战士的血量低于辅助和坦克，但也有战士能够达到坦克的血量标准，这也是许多战士能出肉装抗伤的原因。刺客的血量低于战士，法师和射手的血量又低于刺客。</p>
+<p>这张图仍然不够直观，因为涉及的英雄太多了，我直接把不同英雄类别的英雄数值求一个平均，针对四个比较有意义的数值，<strong>基础生命、物理防御、续航、物理攻击</strong>绘制了折线图：<br><img src="https://s2.loli.net/2022/03/07/j256DZfc9qiaHwO.png"/><br><img src="https://s2.loli.net/2022/03/07/elOaxEjMP1RTD4Q.png"/><br><img src="https://s2.loli.net/2022/03/07/YyX6qZRGa8PmzK7.png"/><br><img src="https://s2.loli.net/2022/03/07/P2tLdRI9XZD8oev.png"/></p>
+<p>前三项都描述的是有效生命相关的数值，第四项物理攻击描述了英雄的DPS。</p>
+<p>有了数据表，我们可以开始尝试着分析并提炼出一些结论。</p>
+<p>通过查看上述的五张表，很容易能看出一些趋势，在输出和抗伤两个维度上，为了做到把英雄们区别开来，设计师进行了许多尝试。</p>
+<p>首先是把所有的英雄划分成了两个区域：主要抗伤和主要输出，再在各自的区域里面对不同职业进行了能力的细分。<br><img src="https://s2.loli.net/2022/03/07/ws9QDuPO3vzYjbe.png"/></p>
+<p>辅助、坦克有较高的生命防御和回复，较低的输出，用于抗伤；刺客和射手用来输出，因而抗伤就很低；战士英雄能抗能打，位于中间的位置，变化丰富也是所有职业里玩法最多变的，一个好的战士，常常能兼有辅助、上单、打野三种位置的能力。法师的情况和物理差不多，不过走的是另一条伤害通道。</p>
+<p>在抗伤方面，在最大生命和每五秒回血上，辅助和坦克旗鼓相当，但是坦克在防御属性上竟然低于辅助，可能跟选取的坦克多是回血型英雄有关，在物理输出上，坦克明显高于辅助，这里是用另一个维度，对抗伤职业中的坦克和辅助进行了区分，坦克是肉，但渴望输出，辅助也是肉，但更希望保护他人。</p>
+<p>在输出方面，通过主打技能输出和主打普工输出的方式，区分出了刺客和射手英雄，普攻伤害偏向后置，技能伤害则多为前置，一套技能打完就快速倾泻了所有伤害。</p>
+<p>再来看看英雄的移速：</p>
+<img src="https://s2.loli.net/2022/03/07/2KZYHXIvpwPSM4W.png"/>
+
+<p>因为英雄的移速是不会随等级成长的，因此我们只要简单的看一下移速分为几档就可以了。</p>
+<p>一般而言，移速有390 380 370 360 350 340几档，战士、刺客和辅助英雄移速集中在380附近，根据不同英雄的情况可能会设定为390（庄周）或370（白起）；射手和法师一般集中在350到360左右，一些英雄会设定为340（例如貂蝉）。</p>
+<p>在这个维度上，我们发现输出较高的射手和法师的移速是很慢的，因此射手和法师虽然伤害高，但既难追击，也难以逃离战场，这时候就凸现出了坦克和辅助的重要性，射手无法单独解决的留人和自保问题，自然而然地被交由坦克和辅助来解决。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>上述数据其实印证了一些我们早已经知道的结论和英雄们的<strong>特点</strong>：</p>
+<p><strong>射手：普攻，远程，伤害高但曲线后置，腿短，脆皮，为了打出后置伤害从而发挥作用，需要其他职业的帮助</strong></p>
+<p><strong>刺客：技能伤害，近程，伤害高且曲线前置，机动性强，但脆皮，需要利用自己的机动性，频繁的进场打出伤害，打完就走</strong></p>
+<p><strong>辅助：血量防御回血很优秀，身板厚实，伤害相对较低，但能够给队友提供一些不可或缺的帮助。</strong></p>
+<p><strong>坦克：血量和防御较高，身板厚，伤害高于辅助但仍然较低，一般冲在前面吸收伤害并给团队提供控制技能。</strong></p>
+<p><strong>战士：伤害和抗伤都比较均衡，机动性次于刺客，能够提供一些控制，</strong></p>
+<p><strong>法师：主打法术伤害</strong></p>
+<p>下面把这些很理性的话翻译一下。</p>
+<p>辅助：就是要给团队做出贡献！人人为我我为人人</p>
+<p>坦克：都打我，别打别人！</p>
+<p>战士：来跟我打，不是你死就是我活！</p>
+<p>射手：弄不死我就等着被我弄死！</p>
+<p>刺客：一下就弄死你！</p>
+<p>很清晰，但在谈论单个英雄，尤其是面对一些可能性较多的英雄的时候，我们仍然很容易迷失这些宏观上的分类。</p>
+<h2 id="英雄职业细分"><a href="#英雄职业细分" class="headerlink" title="英雄职业细分"></a>英雄职业细分</h2><p>职业说明了一些英雄特点，但也给了英雄们一些<strong>要求</strong></p>
+<p><strong>辅助：给队友或团队提供加强，或具有某种有效的战略战术意义，是团队其他人的放大器</strong></p>
+<p><strong>战士：能抗能打，有在万军之中取上将首级的能力</strong></p>
+<p><strong>坦克：抗伤害，有在万军之中被暴揍不死的能力</strong></p>
+<p><strong>刺客：高机动性，具有能够一套秒杀脆皮的能力</strong></p>
+<p><strong>射手：远程伤害，具有持续高强度输出的能力</strong></p>
+<p><strong>法师：法术伤害</strong></p>
+<p>更进一步，还有细分的职业定位，这里对全英雄的细分职业进行了记录：</p>
+<img src="https://s2.loli.net/2022/03/07/LtEblpHKDUT7CzP.png"/>
+
+<p>可以看到，王者荣耀的细分职业一共19种，分别是：</p>
+<p><strong>先锋坦克    守护坦克    重装战士    刺杀战士    冲锋战士    狂战士    游斗刺客    爆发刺客    阵地法师    控场法师    突袭法师    炮台法师    进攻辅助    守护辅助    战术辅助    增益辅助    灵巧射手    连珠射手    重炮射手</strong></p>
+<p>我们将根据每个类别下面的英雄来辨析每个职业的性质</p>
+<h3 id="坦克"><a href="#坦克" class="headerlink" title="坦克"></a>坦克</h3><p>首先所有的坦克都符合坦克的基本特性——<strong>抗伤害，有在万军之中被暴揍不死的能力</strong>，上述九个英雄都符合这个特点，极能抗伤。</p>
+<p><strong>坦克的技能设计一般要受到生命值和防御值的制约，例如咬金、白起、八戒、刘邦的技能和被动都是跟生命值挂钩的，项羽的被动依赖物理防御。</strong></p>
+<p>坦克分为先锋坦克和守护坦克</p>
+<h4 id="先锋坦克"><a href="#先锋坦克" class="headerlink" title="先锋坦克"></a>先锋坦克</h4><p>先锋坦克有：程咬金、廉颇、白起、苏烈、猪八戒、阿古朵</p>
+<p>对比发现，先锋坦克字面意义上，是要能够<strong>突入万军之中</strong>给敌军制造混乱的搅屎棍，而守护坦克，则是要<strong>在万军来袭</strong>的时候抗伤保人的男妈妈。</p>
+<p><strong>先锋坦克有更强的机动力（通过位移技能、移速加强、霸体免控等等机制实现），但控制不稳定，需要常常适合单带或者把握时机开团，开到C位就带领团队冲锋乱杀。</strong></p>
+<p>举例而言，程咬金有一段能跳墙的长位移，大招加30%移速，平A还能减少位移技能CD，但缺乏控制。</p>
+<p>廉颇有一技能配合二技能有两段高频触发的位移，有霸体，大招有三段短位移，控制多但是大招的控制前摇长不稳定。</p>
+<p>白起有被动加移速，大招可以认为是一段位移且加移速，大招控制2.5秒但不稳定。</p>
+<h4 id="守护坦克"><a href="#守护坦克" class="headerlink" title="守护坦克"></a>守护坦克</h4><p><strong>守护坦克有：刘邦、项羽、夏侯惇</strong></p>
+<p><strong>守护坦克相对而言机动力更差（通常位移只有一段），但控制更加稳定，他们不需要依靠自己的位移冲入敌阵，而是更多使用自己的位移和控制保护C位。</strong></p>
+<p>举例而言，项羽和夏侯惇的位移技能都附带控制，控制技能也比较稳定不容易放空，且释放简单，刘邦能够远程传送保人，但是突进切C的能力稍弱。</p>
+<h3 id="战士"><a href="#战士" class="headerlink" title="战士"></a>战士</h3><p>战士分为重装战士、冲锋战士、狂战士和刺杀战士</p>
+<p>战士常常与坦克同去边路，有可能被混淆，但是战士区别于坦克最重要的一点就是能否有抗住伤害同时杀死敌人的能力，即<strong>能抗能打，有在万军之中取上将首级的能力</strong>。</p>
+<p><strong>战士的设计一般受到物理攻击属性的主要支配，因此和坦克的设计有巨大的不同，战士的所谓抗伤能力，常常来自于攻击力带来的回血、护盾、免伤等等机制。</strong></p>
+<h4 id="重装战士"><a href="#重装战士" class="headerlink" title="重装战士"></a>重装战士</h4><p><strong>重装战士有：钟无艳、吕布、梦奇、狂铁、蒙恬</strong></p>
+<p><strong>重装战士的设计特点是有很强的自保抗伤能力，同时在近身战斗的时候具有不俗的输出能力，一般有一定的位移能力和控制能力，一般都会有护盾和免伤的设定。</strong> 一般也是开团或者单带的好手。</p>
+<p>一句话总结，重装战士就是要做到<strong>进可攻，退可守</strong></p>
+<p>举例而言：钟无艳有位移，有护盾抗伤自保，在近身的时候有稳定的控制和高额输出的能力；吕布大招有一段长位移且能够封路，有高额护盾回血，有真伤保证自己发育成熟的情况下近战的强度；狂铁有一段短位移，强化普攻携带一段稳定控制，有护盾，技能有高额的输出加回血能力。</p>
+<h5 id="如何分辨一个英雄是重装战士还是先锋坦克？"><a href="#如何分辨一个英雄是重装战士还是先锋坦克？" class="headerlink" title="如何分辨一个英雄是重装战士还是先锋坦克？"></a><strong>如何分辨一个英雄是重装战士还是先锋坦克？</strong></h5><p>两者其实都有抗伤和切C的能力，因为王者峡谷是一个发育决定一切的地方，但是如果回到设计层面，就能够很容易看出这种倾向和意图。</p>
+<p>重装战士的技能和被动设定一般会和攻击挂钩，锤妈的的护盾、技能伤害都是受到物理攻击加成的，吕布的护盾和伤害也是同样的机制，这意味着攻击力本身才是他们的核心，一般至少要出两件输出装备。</p>
+<p>先锋坦克的被动和技能一般都是跟护甲和生命值挂钩的，例如程咬金的所有被动都跟生命值百分比有关，无论是输出还是回血都跟血量挂钩。白起在改版前伤害技能和大招嘲讽时长都跟额外生命挂钩，因此非常肉，但是改版之后伤害技能改接受物理攻击加成了，可以说是把白起的体验往战士方向进行了一些调整。廉颇的大招伤害同时跟最大生命和攻击力挂钩，如果是重装战士是不可能这么设计的。</p>
+<h4 id="冲锋战士"><a href="#冲锋战士" class="headerlink" title="冲锋战士"></a>冲锋战士</h4><p><strong>冲锋战士有：达摩、露娜、亚瑟、关羽、哪吒、孙策、夏洛特</strong></p>
+<p><strong>冲锋战士的特点就是一般很强的机动性，位移技能同时配合控制留人</strong>，相对于重装战士而言灵活度高不知道哪里去了，伤害和抗伤跟重装战士五五开，具体到每个英雄有高有低。</p>
+<p>达摩有大招踢墙后有两段位移，亚瑟出满cd装备之后有稳定的移速加成，关羽的所有被动和技能都能够增加移速或提供位移，露娜的被动和大招都提供位移，且大招提供多段位移的可能，哪吒具有全图突进的能力且一技能最高能提供30%的移速，孙策具有半图快速位移的能力，夏洛特能够进行多段位移。</p>
+<p>当然了，上述所有的英雄技能都提供控制或者减速。</p>
+<h5 id="刘邦和哪吒的区别？"><a href="#刘邦和哪吒的区别？" class="headerlink" title="刘邦和哪吒的区别？"></a>刘邦和哪吒的区别？</h5><p>刘邦传送到己方，这是保护，而哪吒是传送到敌方，这是突进，刘邦的四个技能里三个跟最大生命值挂钩，其中两个是护盾技能，而哪吒所有技能都是跟物理输出挂钩的。所以刘邦铁坦克，哪吒是战士，而不是坦克，尽管哪吒的减伤和灼烧效果赋予了哪吒以坦克的可能性，但本质上他是一个战士。</p>
+<h5 id="先锋坦克和冲锋战士之间的区别？"><a href="#先锋坦克和冲锋战士之间的区别？" class="headerlink" title="先锋坦克和冲锋战士之间的区别？"></a>先锋坦克和冲锋战士之间的区别？</h5><p>先锋坦克和冲锋战士都有向前冲的意味，也都有控制，听起来有点像，但我们已经聊过战士和坦克的本质区别，那么先锋坦克和冲锋战士的区别也就自然明确了。</p>
+<h4 id="狂战士"><a href="#狂战士" class="headerlink" title="狂战士"></a>狂战士</h4><p><strong>狂战士有：老夫子、典韦、盘古、曹操、刘备、李信、司空震</strong></p>
+<p>什么叫狂战士？狂战士就是很狂，越打越兴奋，越兴奋越打。</p>
+<p>狂战士符合<strong>近则强，战则勇</strong>的特点，狂战士一般都是后置伤害曲线，靠普攻打伤害，可以理解为战士中的射手，但是因为是近战，所以必须有脱离战场和在战场里抗住伤害的能力。</p>
+<p>狂战士的设计全是套路，一般而言符合以下几个特点</p>
+<ol>
+<li>一定有技能加强普攻伤害和攻速，一定依赖普攻，普攻一般能够直接或者间接缩短技能的cd，这就保证了在作战的时候，狂战士的输出收益是最高的</li>
+<li>某个核心技能一定提供免伤、回血、护盾其中之一，配合第一点，给狂战士提供持续作战的续航能力</li>
+<li>一定有某个技能提供机动性，用来脱离战场或者切入战场</li>
+</ol>
+<p>举例：</p>
+<p><strong>老夫子</strong>被动加强普攻伤害和攻速，二技能加强普攻击，并且被动使得普攻能减少一二技能cd，二技能提供免伤和机动性，三技能是一个短位移，一般用来突进。</p>
+<p><strong>典韦</strong>依赖普攻伤害，二技能加普攻攻速，大招加普攻伤害，一技能强化普攻，同时典韦战斗时有二技能能提供高额吸血，一技能和三技能都增强机动性，三技能用来突进，一技能用于追击或逃跑。</p>
+<p><strong>曹操</strong>依赖普攻伤害，技能提供攻速，且普攻能减少二技能cd，大招吸血持续续航，一技能提供机动性用来追击和输出。</p>
+<p><strong>李信</strong>被动强化普攻增加攻速，普攻能减少机动性和回血技能cd。</p>
+<p><strong>刘备</strong>被动和一技能加强普攻伤害和攻速，大招提供护盾续航，二技能是一个短位移提供机动性。</p>
+<h5 id="程咬金是狂战士吗"><a href="#程咬金是狂战士吗" class="headerlink" title="程咬金是狂战士吗"></a>程咬金是狂战士吗</h5><p>其实从狂战士的设计角度来说，程咬金也能一定程度被归为狂战士，因为程咬金的被动加强了普攻伤害，普攻能够减少位移技能的cd，大招提供了回血，同时和一技能一起提供了机动性，尽管程咬金没有用吸血和护盾的机制，来保证作战时收益的最大化，但是由于伤害跟已损失的血量挂钩，所以同样营造出了作战时收益最高的体验。</p>
+<p>但还是先前说的，由于程咬金的设计是血量base的，所以会被划归为坦克，很长一段时间里，大部分玩家们也是这么认为的，直到某一个版本过后，程咬金狂战士的一面被开发出来。</p>
+<p>可以说先锋坦克中的普攻英雄，都有着成为狂战士的潜力，因为先锋坦克有持续作战能力，有一定输出能力，有足够机动性，只要时机到了，改变就在一念之间。</p>
+<p>我玩了四年多程咬金，现在可以认为程咬金作为狂战士的面已经越来越大，甚至有可能成为主流玩法了。</p>
+<p>但是，但是，目前为止，程咬金的狂战士面只会出现在部分对局里，在经济没有压制的前提下，他比较难以打出狂战士所要求的高伤害，所以综合所有对局来看，他还是很明确地应该归入先锋坦克的位置。</p>
+<h4 id="刺杀战士（玩的不多，日后再说）"><a href="#刺杀战士（玩的不多，日后再说）" class="headerlink" title="刺杀战士（玩的不多，日后再说）"></a>刺杀战士（玩的不多，日后再说）</h4><p><strong>刺杀战士包括：花木兰、赵云、宫本武藏、雅典娜、橘右京、杨戬、铠（输出流）、耀、马超</strong></p>
+<p>刺杀战士是战士中的刺客，身板薄于坦克和重装战士，但是厚于刺客，但机动性没有刺客那么强。</p>
+<p>一般而言刺杀战士会与有一定的机动性，且能够在较短的时间内击杀敌人，但敌人仍有一定的反应时间。</p>
+<h3 id="刺客"><a href="#刺客" class="headerlink" title="刺客"></a>刺客</h3><p>此刻我玩的不多，这里就不不懂装懂分析具体英雄技能了，只能谈谈感受，对以后自己玩刺客分析刺客提供一个指导。</p>
+<p>刺客一般是打野位置，需要全图游走打野并gank，这要求刺客必须要有较高的机动性和较高的伤害，突袭对面脆皮和残血英雄出其不意一套带走。</p>
+<p>游斗刺客和爆发刺客是刺客在机动性和爆发两个特点上集中进化的产物，前者特化机动性，爆发稍弱，后者强调爆发伤害</p>
+<h4 id="游斗刺客"><a href="#游斗刺客" class="headerlink" title="游斗刺客"></a>游斗刺客</h4><p><strong>游斗刺客包含：韩信、李白、百里玄策、裴擒虎、元歌、镜、澜</strong></p>
+<p>游斗刺客具有相当高的机动性和频繁的位移技能，具有第一档的机动性，爆发稍微弱于爆发刺客，一般需要靠超强的机动性游走吃经济，打经济优势。经典英雄例如李白和韩信，同经济下很难打得赢战士，切C也够呛，但是如果能把经济刷起来就很厉害。</p>
+<h4 id="爆发刺客"><a href="#爆发刺客" class="headerlink" title="爆发刺客"></a>爆发刺客</h4><p><strong>爆发刺客包含：孙悟空、阿珂、兰陵王、娜可露露、司马懿、云中君</strong></p>
+<p>这几个英雄的特色就是有高额的伤害上限，经济足够的情况下能够在对方做出反应之前击杀。</p>
+<h4 id="两种刺客的区别在哪里？"><a href="#两种刺客的区别在哪里？" class="headerlink" title="两种刺客的区别在哪里？"></a>两种刺客的区别在哪里？</h4><p>游斗刺客和爆发刺客实现了两种不同的体验</p>
+<p>前者是猎杀，<strong>紧张刺激</strong>，是图穷匕见秦王绕柱的体验，猎物还能够作出反应大喊救命。</p>
+<p>后者是暗杀，<strong>窒息感</strong>，是杀人不眨眼的刺客，当他出现的时候你正准备开口叫救命，却发现自己已经身首异处。</p>
+<h5 id="刺杀战士和刺客的区别在哪里？"><a href="#刺杀战士和刺客的区别在哪里？" class="headerlink" title="刺杀战士和刺客的区别在哪里？"></a>刺杀战士和刺客的区别在哪里？</h5><p>看看这张图</p>
+<img src="https://s2.loli.net/2022/03/07/Yai2fTAWUQRuq3d.png"/>
+
+<p>数值分配上来说，刺客的身板显著低于战士，但胜在输出较高。</p>
+<p>刺杀战士的爆发和机动性低于刺客，但是身板相对刺客更厚一些，不能满足全图游走的需求，但是能够在线上发育，打出伤害。刺客的身板薄，伤害上限高，不需要像战士一样抗伤害，只需要在适当的时间出现，把爆发打出来就可以，因此没必要出肉装补足身板。</p>
+<h3 id="辅助"><a href="#辅助" class="headerlink" title="辅助"></a>辅助</h3><p>辅助在本章开头说过，辅助是给队友或团队提供加强，或具有某种有效的战略战术意义的存在，是团队其他人的放大器。</p>
+<p>辅助身板厚，能抗，伤害低，听起来很像坦克，但辅助的输出更低，不能自己打出高额的伤害，必须依赖他人。</p>
+<p>辅助区别于坦克的最重要一点就是是否在为了队友服务。我们说所有的英雄都在为团队服务没错，但是辅助必须是从设计机制上就把为人民服务五个字写进DNA里。辅助永远的神。</p>
+<p>辅助根据为人民服务的作用性质不同分为四类，进攻辅助、守护辅助、战术辅助和增益辅助</p>
+<h4 id="进攻辅助"><a href="#进攻辅助" class="headerlink" title="进攻辅助"></a>进攻辅助</h4><p><strong>进攻辅助包括：钟馗、东皇太一、鬼谷子、盾山、鲁班大师</strong></p>
+<p>进攻辅助，顾名思义就是要给队友创造进攻机会，侵略性很强。作为对手，你遇到进攻辅助的时候应该是高度紧张的，你怕的不是他杀了你，而是怕他摸到你之后其他人杀了你。进攻辅助虎视眈眈，随时准备帮队友把敌人的手脚摁住，任队友宰割。</p>
+<p>举例：钟馗的核心体验勾勾乐，勾到就是大奖。东皇大招吸人，一旦被吸住就会被集火。鬼谷子跟钟馗是同样的道理，而且鬼谷子神龙见首不见尾，让对方感到高度警惕和紧张。盾山一技能把敌人运到身后。鲁班大师拉人。</p>
+<p>同时，进攻辅助也是辅助，他们除了搞对手，还要帮队友。钟馗的被动天生就是拿助攻的料，鬼谷子能够给队友加速隐身，盾山修塔，帮队友挡子弹，属于团队作用，鲁班大师也能拉队友和推兵线。</p>
+<h4 id="守护辅助"><a href="#守护辅助" class="headerlink" title="守护辅助"></a>守护辅助</h4><p><strong>守护辅助包括：牛魔、庄周、张飞、太乙真人</strong></p>
+<p>守护辅助的特性很明显，就是能够给队友提供减伤、提供免控、提供护盾、还有死而复生机制，都是帮人帮己的机制</p>
+<h5 id="守护辅助和守护坦克有什么区别呢？"><a href="#守护辅助和守护坦克有什么区别呢？" class="headerlink" title="守护辅助和守护坦克有什么区别呢？"></a>守护辅助和守护坦克有什么区别呢？</h5><p>区别就在于守护坦克基本只能够控制敌人，而没有能够给队友提供防御属性增强的机制。</p>
+<h4 id="战术辅助"><a href="#战术辅助" class="headerlink" title="战术辅助"></a>战术辅助</h4><p><strong>战术辅助包括：孙膑、刘禅、大乔</strong></p>
+<p>他们的特点也很明显，首先提供队友的增益，例如加速，其次提供某种战术可能性。例如孙膑的加速能够号召队友冲刺或者帮助队友逃离战场，刘禅对塔这种决定游戏进度的资源具有更强的伤害作用，能加速推塔，也能够号召队友越塔强杀，大乔能够实现队友在泉水和战场之间的快速往返，提供队友巨大的战术优势。</p>
+<h4 id="增益辅助"><a href="#增益辅助" class="headerlink" title="增益辅助"></a>增益辅助</h4><p><strong>增益辅助：蔡文姬、明世隐、瑶</strong></p>
+<p>增益辅助就是直接加强队友作战属性的，具体如何加强的也都很明显，基本思路是，增益辅助能够直接抬升某一队友的强度，使其在作战的时候强度超标，从而做到碾压对方。</p>
+<h3 id="射手"><a href="#射手" class="headerlink" title="射手"></a>射手</h3><p>射手分为灵巧射手、连珠射手和重炮射手</p>
+<h4 id="灵巧射手"><a href="#灵巧射手" class="headerlink" title="灵巧射手"></a>灵巧射手</h4><p><strong>灵巧射手顾名思义是具有较高机动性的射手，包括：艾琳、马可波罗、公孙离</strong></p>
+<p>其中马可波罗和公孙离具有多次位移的能力，艾琳则能够触发高频的瞬间加速。</p>
+<h4 id="连珠射手"><a href="#连珠射手" class="headerlink" title="连珠射手"></a>连珠射手</h4><p><strong>连珠射手包括：后羿、狄仁杰、鲁班七号、虞姬、黄忠、伽罗、蒙犽</strong></p>
+<p>连珠射手依靠多次普攻打出可观的伤害，需要长时间连续输出，但腿短，包括虞姬这种带一段加速的在内，只要没达到灵巧射手的机动性范围内，都被归类为连珠射手。</p>
+<h4 id="重炮射手"><a href="#重炮射手" class="headerlink" title="重炮射手"></a>重炮射手</h4><p><strong>重炮射手包括：孙尚香、李元芳、成吉思汗、百里守约</strong></p>
+<p>重炮射手区别于连珠射手，需要有一击倾泻大量伤害的能力，这样的能力意味着他们不需要长期呆在战场，而是打前置伤害然后脱离。所以重炮射手一般还有一定位移能力。</p>
+<p>举例：李元芳一技能能够打出爆发伤害，二技能有位移能力。孙尚香一技能位移同时打出爆发伤害。成吉思汗大招攒伤害一次性打出，还有进草丛加移速的设定提高机动性。百里守约的伤害不需要说了，他也有大招提供脱战手段。</p>
+<h3 id="法师"><a href="#法师" class="headerlink" title="法师"></a>法师</h3><h2 id="具体英雄分析——以钟无艳为例"><a href="#具体英雄分析——以钟无艳为例" class="headerlink" title="具体英雄分析——以钟无艳为例"></a>具体英雄分析——以钟无艳为例</h2><p>分析完了职业大类和职业细分，抓到了每个英雄在一些方面的共性，我们可以开始对一些具体的英雄分析英雄设计，找到英雄的S属性，也就是英雄的个性。</p>
+<h3 id="钟无艳定位分析"><a href="#钟无艳定位分析" class="headerlink" title="钟无艳定位分析"></a>钟无艳定位分析</h3><p>先来看钟无艳的技能介绍</p>
+<img src="https://s2.loli.net/2022/03/07/R7rs3nkKS6EP8jo.png"/>
+<img src="https://s2.loli.net/2022/03/07/3x4yKhW1RTLvqfE.png"/>
+
+<p>钟无艳是一个重装战士，我们已经说过重装战士定位接近坦克，能承伤，有控制，有适当的机动性，同时能够做到战士职业的基本要求：万军之中取上将首级。锤妈的一技能提供效率一般但稳定的位移，大招能够加速自身，机动性足够，大招给了频繁刷新的护盾，保证了锤妈的身板，同时还有被动提供的控制，基本是符合当前版本下重装战士的设定的。</p>
+<p>钟无艳的核心是她的被动提供的随时随地能够触发的石化效果，石化效果有且仅有锤妈能够触发，锤妈也是峡谷所有英雄中唯一的一个所有伤害都能触发一个硬控的英雄。</p>
+<p>石化的效果衔接了各个技能，使得锤妈重装战士的体验成为可能，正是因为所有伤害都能够触发石化，所以锤妈的技能就可以做大开大合的设计，拉长前摇，突出重装战士独有的厚重感。像锤妈二技能这样的前摇时间，没有控制技能的衔接是不可能打出效果的，石化则恰到好处的解决了这个问题。</p>
+<p>大招的高速多段伤害也是配合石化的概率触发来设计的，多段伤害的设计基本上保证了大招必然石化对方，石化又反过来让锤妈大招的释放游刃有余，提供了大招边缘刮人触发额外伤害的操作空间。</p>
+<h3 id="钟无艳当前版本对局数据分析"><a href="#钟无艳当前版本对局数据分析" class="headerlink" title="钟无艳当前版本对局数据分析"></a>钟无艳当前版本对局数据分析</h3><p>说了这么多，结合数据来看看锤妈的伤害能力和抗伤能力。</p>
+<p>我记录了一场对局中一些关键装备成型时，钟无艳的<strong>等级、技能加点情况、对局时间、经济</strong>等要素，然后计算了核心数值如<strong>血量、攻击、防御</strong>，在此基础上计算了每次购买新装备时各个技能的输出伤害。</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>时间/分钟</th>
+<th>装备</th>
+<th>经济</th>
+<th>攻击力</th>
+<th>物理防御</th>
+<th>血量</th>
+<th>护盾</th>
+<th>大招额外护盾</th>
+<th>等额血量</th>
+<th>一技能伤害</th>
+<th>二技能伤害</th>
+<th>大招伤害</th>
+<th>一技能等级</th>
+<th>二技能等级</th>
+<th>大招等级</th>
+<th>大招最大伤害</th>
+<th>二技能最大伤害</th>
+<th>最小伤害</th>
+<th align="left">最大伤害</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>2</td>
+<td>抵抗鞋</td>
+<td>930</td>
+<td>242</td>
+<td>166</td>
+<td>4284</td>
+<td>315</td>
+<td>657</td>
+<td>5569.92</td>
+<td>515</td>
+<td>731</td>
+<td>2749</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>3848</td>
+<td>1462</td>
+<td>3995</td>
+<td align="left">5826</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5.5</td>
+<td>黑切</td>
+<td>2800</td>
+<td>353</td>
+<td>210</td>
+<td>5336</td>
+<td>390</td>
+<td>981</td>
+<td>7097.28</td>
+<td>694</td>
+<td>972</td>
+<td>3459</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>4843</td>
+<td>1944</td>
+<td>5125</td>
+<td align="left">7480</td>
+</tr>
+<tr>
+<td>9</td>
+<td>7.5</td>
+<td>反甲</td>
+<td>4700</td>
+<td>421</td>
+<td>676</td>
+<td>6162</td>
+<td>586</td>
+<td>1428</td>
+<td>8762.96</td>
+<td>775</td>
+<td>1150</td>
+<td>4494</td>
+<td>2</td>
+<td>5</td>
+<td>2</td>
+<td>6292</td>
+<td>2301</td>
+<td>6420</td>
+<td align="left">9368</td>
+</tr>
+<tr>
+<td>10</td>
+<td>9</td>
+<td>风暴巨剑</td>
+<td>5600</td>
+<td>514</td>
+<td>698</td>
+<td>6438</td>
+<td>650</td>
+<td>1606</td>
+<td>9342.64</td>
+<td>932</td>
+<td>1285</td>
+<td>5090</td>
+<td>3</td>
+<td>5</td>
+<td>2</td>
+<td>7125</td>
+<td>2571</td>
+<td>7307</td>
+<td align="left">10628</td>
+</tr>
+<tr>
+<td>11</td>
+<td>10.5</td>
+<td>风暴巨剑</td>
+<td>6500</td>
+<td>607</td>
+<td>721</td>
+<td>6714</td>
+<td>713</td>
+<td>1783</td>
+<td>9922.32</td>
+<td>1043</td>
+<td>1500</td>
+<td>5685</td>
+<td>3</td>
+<td>6</td>
+<td>2</td>
+<td>7959</td>
+<td>3000</td>
+<td>8228</td>
+<td align="left">12002</td>
+</tr>
+<tr>
+<td>13</td>
+<td>12.5</td>
+<td>破军</td>
+<td>7800</td>
+<td>652</td>
+<td>765</td>
+<td>7265</td>
+<td>893</td>
+<td>2081</td>
+<td>11132.52</td>
+<td>1142</td>
+<td>1565</td>
+<td>6573</td>
+<td>4</td>
+<td>6</td>
+<td>3</td>
+<td>9202</td>
+<td>3131</td>
+<td>9281</td>
+<td align="left">13475</td>
+</tr>
+</tbody></table>
+<p>经过实测，所有的伤害倾泻出来一共需要大概6秒的时间：</p>
+<img src="https://s2.loli.net/2022/03/07/A87NcoHFOBWM24r.png"/>
+
+<p>我们根据实测数据可以估算秒伤：</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>等额血量</th>
+<th>最小伤害</th>
+<th>最大伤害</th>
+<th>秒伤（估算）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>5570</td>
+<td>3995</td>
+<td>5826</td>
+<td>818.385</td>
+</tr>
+<tr>
+<td>6</td>
+<td>7097</td>
+<td>5125</td>
+<td>7480</td>
+<td>1050.403</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8763</td>
+<td>6420</td>
+<td>9368</td>
+<td>1315.693</td>
+</tr>
+<tr>
+<td>10</td>
+<td>9343</td>
+<td>7307</td>
+<td>10628</td>
+<td>1494.545</td>
+</tr>
+<tr>
+<td>11</td>
+<td>9922</td>
+<td>8228</td>
+<td>12002</td>
+<td>1685.898</td>
+</tr>
+<tr>
+<td>13</td>
+<td>11133</td>
+<td>9281</td>
+<td>13475</td>
+<td>1896.31</td>
+</tr>
+</tbody></table>
+<p>从抗伤的角度来看，10000点左右的等额血量（未考虑护甲）已经达到坦克的标准，从伤害的角度来看，我们把秒伤换算成3秒的伤害，就能够看到钟无艳在前后期对脆皮英雄的威胁情况：<br><img src="https://s2.loli.net/2022/03/07/58WuGRzgVmk7LAn.png"/></p>
+<p>可以看到，钟无艳充分输出的情况下，前期能够在三秒内打掉脆皮50%~70%的血量，后期近身战斗具有直接击杀敌方脆皮英雄的能力，考虑到实战，击杀时间可能会延长到4秒。</p>
+<h4 id="当前版本钟无艳的强度足够吗？"><a href="#当前版本钟无艳的强度足够吗？" class="headerlink" title="当前版本钟无艳的强度足够吗？"></a>当前版本钟无艳的强度足够吗？</h4><p>从我<strong>个人的角度</strong>来说，我是王者4年的老玩家，钟无艳对战场次300+。</p>
+<p>过去一年使用钟无艳对战的胜率在66%左右。</p>
+<p>当前版本赛季第一个月结束上到王者7星，本赛季使用钟无艳对战20场，胜率在55%左右。</p>
+<p>我个人的体验而言，当前版本的钟无艳强度是达标的，进可攻退可守，机动性适中，打起来非常舒服。</p>
+<p>从<strong>全体玩家的角度</strong>来看，钟无艳目前是T2级的战坦（重装战士），但在王者营地中被归到了游走位，说明钟无艳在大部分玩家心中是一个辅助位英雄，出场率11.5%，全英雄排名36/106，胜率51.25%，全英雄排名28/106。</p>
+<p>从各个维度的数据来看，钟无艳当前版本的强度是足够的，她的各方面数值都很均衡，没有哪项数值超标，但够用。</p>
+<h3 id="历史版本上的钟无艳"><a href="#历史版本上的钟无艳" class="headerlink" title="历史版本上的钟无艳"></a>历史版本上的钟无艳</h3><p>我们现在来看看王者荣耀对钟无艳的历史调整思路，我们会发现，历史调整的思路将会符合我们说的，<strong>重装战士进可攻退可守，有一定的机动和控制来满足攻守兼备的需求</strong>。</p>
+<p>先来看看整体的调整走向：</p>
+<img src="https://s2.loli.net/2022/03/07/vfVIo1EdZijtlFh.png"/>
+我们可以看到主要调整方向：
+
+<ol>
+<li>机动性</li>
+<li>伤害增加</li>
+<li>护盾和生命值</li>
+</ol>
+<p>这三点都符合重装战士的基础能力，基本思路就是哪里不达标调整哪里。</p>
+<p>接下来，我们一个版本一个版本倒推。</p>
+<h4 id="V63-追击能力增强"><a href="#V63-追击能力增强" class="headerlink" title="V63 追击能力增强"></a>V63 追击能力增强</h4><img src="https://s2.loli.net/2022/03/07/CzFNhGIJPUMloer.png"/>
+
+<p>这里追击能力增强，最大增加移速从15%调整到20%，增强了锤妈大招带来的附加机动性。也就是说这个版本之前，策划认为锤妈的机动性是不够的。</p>
+<p>其原因可能是多方面的，设计之初，每个英雄一定是生根于自己的职业细分下的，锤妈最初一定是个重装战士毋庸置疑，但随着一些附加的属性开发出的玩法，锤妈的玩法开始逐渐向刺杀战士偏移。</p>
+<p>这一点很明显，在官方过时的英雄介绍里，锤妈的推荐召唤师技能是眩晕和治疗：<br><img src="https://s2.loli.net/2022/03/07/7zPsVnb1RCQ3mWg.png"/></p>
+<p>但实际上作战中，玩家带的都是闪现或者惩戒。</p>
+<p>原因是锤妈的二技能带来的瞬间爆发伤害和大招一技能的机动性，使得二闪把敌人打残，大招控制收割，一技能突进离开战场的玩法成为主流。原本锤妈开始呈现出介于重装战士和刺杀战士之间的特性。</p>
+<p>所以锤妈在对机动性的依赖上，呈现出越来越高的需求。在进可攻退可守的两个维度上，锤妈二技能双倍伤害带来的巨大正反馈实在是太诱人了，玩家就是想把二技能打中，所以变得极具进攻性。</p>
+<p>可以说，二技能的双倍伤害成为了锤妈的另一个S属性和核心体验。</p>
+<h4 id="V61-优化大招，提供加速和护盾"><a href="#V61-优化大招，提供加速和护盾" class="headerlink" title="V61 优化大招，提供加速和护盾"></a>V61 优化大招，提供加速和护盾</h4><img src="https://s2.loli.net/2022/03/07/TiwRZbdFQXsyWn1.png"/>
+
+<p>这次调整和V63的调整原因如出一辙，这次调整赋予了锤妈追击的能力，V63的调整进一步确定了这个调整方向。因为加强了大招的移速，强化了威胁性，同时身板也变厚了，所以略微下调了伤害。</p>
+<p>不要小看大招的护盾，4层护盾加起来，在后期能够提供2000点护盾，配合锤妈大招原本自带的3秒护盾，后期能够气功3000以上的护盾，堪比吕布二技能。</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>大招额外护盾</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>656.8</td>
+</tr>
+<tr>
+<td>6</td>
+<td>981.2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1428.4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1605.6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1782.8</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2080.8</td>
+</tr>
+</tbody></table>
+<p>其实，我们知道远古钟无艳的二技能是由50减速效果的，现在只不过是把“将敌人变慢”变成了“把自己变快”而已，是一种变相的机制回归。</p>
+<p>但为什么这么调整呢，因为我们知道峡谷的调整方向在近几个赛季都是往加快节奏方向调整的，留住敌人线然不如冲锋陷阵显得矛盾激化，另外，对于锤妈的体验而言，把自己变快的设计，也抬高了锤妈进场切C的风险，因为这意味着她必须向前冲刺深入人群，面临巨大的危机。</p>
+<p>这一点也符合我们之前说的，重装坦克就是要“在万军之中取上将首级”，只有突入万军，才在万军之中。</p>
+<h4 id="V53-提升坦度"><a href="#V53-提升坦度" class="headerlink" title="V53 提升坦度"></a>V53 提升坦度</h4><img src="https://s2.loli.net/2022/03/07/g67zVFqEy9vwBLW.png"/>
+
+<p>这个版本调整就是一个基本微调，锤妈在重装战士中的存在感一直不如吕布和狂铁，这点有可能是因为锤妈是一个“女汉子”英雄，相对铁骨铮铮的硬汉狂铁和猛将吕布不那么讨喜，这时候需要相对超标的数值来支撑体验，长相也是数值，此消彼长，未为过也。</p>
+<h4 id="V44-大招伤害增加、蓝耗降低"><a href="#V44-大招伤害增加、蓝耗降低" class="headerlink" title="V44 大招伤害增加、蓝耗降低"></a>V44 大招伤害增加、蓝耗降低</h4><img src="https://s2.loli.net/2022/03/07/oGLeszfDEdKWOan.png"/>
+
+<p>这个版本下调了所有技能的蓝耗，其实早在上个版本就已经做了这方面的调整，将锤妈引向技能释放更流畅的方向。在这个版本之后，锤妈已经基本上不会产生因为蓝量不够而需要回家的问题。</p>
+<p>至于锤妈大招的伤害增加，可以说锤妈自始至终都是这种倾向，未来也会是这种倾向，锤妈在机制不重做的情况下，一定为朝着这个方向进化，和坦克做出差异化，毕竟锤妈距离真正的刺杀战士还很远，但容易和辅助混淆，这不是王者的设计团队期望的，好的英雄设计一定是在分类明确的前提下百花齐放，同质化的设计是被尽量避免的。</p>
+<p>接下来我们跳过V42、V36和V32，因为他们的调整思路无非就是提升身板，提升伤害，提升威胁性，把老版本钟无艳所有数值不达标的地方一起补齐罢了。</p>
+<p>我们要着重看一下V21，V21根本上的改变了钟无艳这个英雄，也奠定了钟无艳这个英雄的后续调整思路。</p>
+<h4 id="V21-改版二技能和三技能机制-增加操作细节和博弈深度"><a href="#V21-改版二技能和三技能机制-增加操作细节和博弈深度" class="headerlink" title="V21 改版二技能和三技能机制 增加操作细节和博弈深度"></a>V21 改版二技能和三技能机制 增加操作细节和博弈深度</h4><img src="https://s2.loli.net/2022/03/07/CezgR37AMQNxqIL.png"/>
+
+<p>这个版本，把钟无艳二技能变成了中心伤害翻倍，大招外圈造成额外伤害。</p>
+<p>这两个改动给钟无艳这个英雄注入了真正的生命，使得玩家在对局中产生了更激烈的策略博弈。</p>
+<p>二技能使得钟无艳具备瞬间秒人的能力，同时长期的前摇非常适合搭配闪现使用，铁锤落下天降正义。</p>
+<p>这么诱人的收益，很难不让人希望冲进人堆打出伤害，这种“希望”彻底改变了玩家对钟无艳这个英雄的认知。这也是机制改变动态，动态带来体验的一个经典案例。</p>
+<p>三技能的额外伤害，也给了这个英雄以更高的操作要求和伤害上限。这个改动几乎没有影响新手玩家的体验，但给钟无艳的老玩家提供了打出高光时刻的可能，保证低保人群，同时给到高端人群以足够的尊重。</p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>我们可以看到，钟无艳的远古版本是没有大招额外伤害和二技能双倍伤害的，但是二技能提供减速，被动石化也能够石化一秒。</p>
+<p>这个时候锤妈不强么？不一定，但这时候的锤妈一定不符合重装战士的要求，而更加偏向守护坦克，没伤害，有减速，有稳定控制，但锤妈又缺乏坦克所必需的身板。这时候的锤妈是一个四不像，达不到自己职业细分的要求，也不符合另外一个职业的标准，在成为一个独当一面的英雄之前，甚至不能在峡谷找到自己的位置。</p>
+<p>设计师不会也不希望锤妈往守护坦克的方向迈进，怎么办？那就突出重装战士的特点，抬伤害，降控制，身板该补就补，我的这个观点在V32版本的改进说明中得到了印证：</p>
+<img src="https://s2.loli.net/2022/03/07/CzMqDBN8UuLkbYV.png"/>
+
+
+<p>在这个思路下，二技能的改动让锤妈脱胎换骨，一下子就让锤妈产生了巨大的威慑力，像设计师说的，真正暴力恐怖的大姐姐。二技能也成为了锤妈新的S属性，全峡谷独一份，甚至连原本的核心体验石化控制都为二技能开路，弥补了二技能技能前摇带来的命中率低下问题，两个S属性一唱一和，共同成为了钟无艳这个英雄的pillar。</p>
+<p>什么叫暴力恐怖？有输出就是暴力，而且这个输出不知道什么时候就会砸到你头上，这就叫恐怖，改版后的二技能，包括具有额外伤害的大招，就具备这个特点。</p>
+<p>在V32版本之后，钟无艳已经正式成为一名合格的重装战士，在玩家们的长期开发下，钟无艳的各种玩法也开始成形，在这个前提下，钟无艳能够真正找到自己的个性，即向着重装坦克中的冲锋兵方向发展。</p>
+<p>这一点是狂铁和吕布所不能比拟的，因为锤妈的大招能够在进场后陆续给所有敌人都打上石化，石化又能够直接取消一些敌人技能的释放，这某种意义上使得锤妈开大闪现进场的时候如入无人之境，因为所有的敌人都被石化了打不出控制，所以没有霸体胜似霸体。</p>
+<h4 id="钟无艳的未来走向？"><a href="#钟无艳的未来走向？" class="headerlink" title="钟无艳的未来走向？"></a>钟无艳的未来走向？</h4><p>王者的英雄，早期混沌初开设计不够明确，东摘西指了一些英雄进行了规划。</p>
+<p>16年过后，王者荣耀在稳固了自己的地位厚，不断地对英雄进行分类调整，同时明确定位，整理早期因为时间补足而落下的一些设计漏洞和烂摊子。在17年之前，锤妈的设计是混沌的，四不像，抓不到好玩的核心点，17年明确了核心定位，对英雄做了梳理抓住了英雄们的共性。</p>
+<p>1819年让许多英雄的特性突出，力求百花齐放，这个时期的锤妈开始向着重装战士中的冲锋兵方向，既符合重装战士，又做出自己的特色。</p>
+<p>钟无艳会继续向着这个方向发展，现在打法也已经稳固成型，希望未来钟无艳在玩家的心中能够脱离辅助定位这个误区，真正打出自己的招牌。</p>
+<p>但钟无艳会不会成为某一个版本的野王？我个人感觉是不会的，重装战士的定位，可以偏向先锋坦克，也可以偏向刺杀战士，但是距离真正的打野还有一定的距离，在最基本的规划上，峡谷的野区一定是留给冲锋战士、刺杀战士和刺客们的，野区不需要钟无艳，钟无艳也不必要去野区，钟无艳可以成为功能性打野，但一定不会是玩家们的主流选择。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们层层递进分析了王者荣耀英雄设计时候的一些原则。</p>
+<p>从大类职业出发，抽样检查了王者所有类别英雄的基本数值投放，抓住王者中英雄设计的大类原则和共性。</p>
+<p>往下一层，将大类职业进一步细分，帮助我们更好地切分峡谷中出现的需求，并找到解决这些需求的人。</p>
+<p>然后，我们从上往下，抓住职业特点，分析了钟无艳的设计，印证了英雄设计贴合职业设计的特点。</p>
+<p>最后，我们观察了钟无艳历史的调整沿革，仔细体会了这个英雄从混沌到逐渐明确体验的过程。</p>
+<p>对别人有没有帮助不知道，至少对笔者本身是很有帮助的。加油！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/06/%E5%A5%A5%E6%97%A5%E7%B2%BE%E7%81%B5%E4%B8%8E%E8%90%A4%E7%81%AB%E6%84%8F%E5%BF%97%20%E6%89%93%E5%87%BB%E6%84%9F%E5%88%86%E6%9E%90/" rel="prev" title="奥日精灵与萤火意志 打击感分析">
+      <i class="fa fa-chevron-left"></i> 奥日精灵与萤火意志 打击感分析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#王者荣耀英雄设计分析"><span class="nav-number">1.</span> <span class="nav-text">王者荣耀英雄设计分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大类职业特点"><span class="nav-number">1.2.</span> <span class="nav-text">大类职业特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#王者荣耀英雄属性"><span class="nav-number">1.2.1.</span> <span class="nav-text">王者荣耀英雄属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#英雄数据分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">英雄数据分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#英雄职业细分"><span class="nav-number">1.3.</span> <span class="nav-text">英雄职业细分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坦克"><span class="nav-number">1.3.1.</span> <span class="nav-text">坦克</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先锋坦克"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">先锋坦克</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#守护坦克"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">守护坦克</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#战士"><span class="nav-number">1.3.2.</span> <span class="nav-text">战士</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重装战士"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">重装战士</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何分辨一个英雄是重装战士还是先锋坦克？"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">如何分辨一个英雄是重装战士还是先锋坦克？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冲锋战士"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">冲锋战士</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#刘邦和哪吒的区别？"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">刘邦和哪吒的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#先锋坦克和冲锋战士之间的区别？"><span class="nav-number">1.3.2.2.2.</span> <span class="nav-text">先锋坦克和冲锋战士之间的区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#狂战士"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">狂战士</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#程咬金是狂战士吗"><span class="nav-number">1.3.2.3.1.</span> <span class="nav-text">程咬金是狂战士吗</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刺杀战士（玩的不多，日后再说）"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">刺杀战士（玩的不多，日后再说）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刺客"><span class="nav-number">1.3.3.</span> <span class="nav-text">刺客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#游斗刺客"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">游斗刺客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爆发刺客"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">爆发刺客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种刺客的区别在哪里？"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">两种刺客的区别在哪里？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#刺杀战士和刺客的区别在哪里？"><span class="nav-number">1.3.3.3.1.</span> <span class="nav-text">刺杀战士和刺客的区别在哪里？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助"><span class="nav-number">1.3.4.</span> <span class="nav-text">辅助</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进攻辅助"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">进攻辅助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#守护辅助"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">守护辅助</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#守护辅助和守护坦克有什么区别呢？"><span class="nav-number">1.3.4.2.1.</span> <span class="nav-text">守护辅助和守护坦克有什么区别呢？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#战术辅助"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">战术辅助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增益辅助"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">增益辅助</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#射手"><span class="nav-number">1.3.5.</span> <span class="nav-text">射手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#灵巧射手"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">灵巧射手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连珠射手"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">连珠射手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重炮射手"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">重炮射手</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法师"><span class="nav-number">1.3.6.</span> <span class="nav-text">法师</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体英雄分析——以钟无艳为例"><span class="nav-number">1.4.</span> <span class="nav-text">具体英雄分析——以钟无艳为例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#钟无艳定位分析"><span class="nav-number">1.4.1.</span> <span class="nav-text">钟无艳定位分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#钟无艳当前版本对局数据分析"><span class="nav-number">1.4.2.</span> <span class="nav-text">钟无艳当前版本对局数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当前版本钟无艳的强度足够吗？"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">当前版本钟无艳的强度足够吗？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史版本上的钟无艳"><span class="nav-number">1.4.3.</span> <span class="nav-text">历史版本上的钟无艳</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#V63-追击能力增强"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">V63 追击能力增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#V61-优化大招，提供加速和护盾"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">V61 优化大招，提供加速和护盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#V53-提升坦度"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">V53 提升坦度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#V44-大招伤害增加、蓝耗降低"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">V44 大招伤害增加、蓝耗降低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#V21-改版二技能和三技能机制-增加操作细节和博弈深度"><span class="nav-number">1.4.3.5.</span> <span class="nav-text">V21 改版二技能和三技能机制 增加操作细节和博弈深度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-1"><span class="nav-number">1.4.3.6.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#钟无艳的未来走向？"><span class="nav-number">1.4.3.7.</span> <span class="nav-text">钟无艳的未来走向？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kiritsuguyb"
+      src="/images/timg.jpg">
+  <p class="site-author-name" itemprop="name">kiritsuguyb</p>
+  <div class="site-description" itemprop="description">月明霁君忧，拨云不见愁</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiritsuguyb</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

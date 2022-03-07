@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":36,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="奥日精灵与萤火意志 打击感分析运用打击感七要素：帧率 攻击 受击 帧冻结 表演设计 音效 额外反馈，结合攻受双方表现分析奥日精灵与萤火意志中奥日的攻击技能，说明打击感部分的设计 这里主要分析奥日普攻的打击感 帧率首先在我的机器上录屏下来的帧率是30帧 奥日普攻第一段只有8帧 这意味着奥日的一段普攻伤害只需要0.268秒左右就能够打完，一秒能够挥出4下普攻，我们很快发现奥日的普攻一共有五段连击。那么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="奥日精灵与萤火意志 打击感分析">
+<meta property="og:url" content="http://yoursite.com/2022/03/06/%E5%A5%A5%E6%97%A5%E7%B2%BE%E7%81%B5%E4%B8%8E%E8%90%A4%E7%81%AB%E6%84%8F%E5%BF%97%20%E6%89%93%E5%87%BB%E6%84%9F%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="KiritsuguybのBlog">
+<meta property="og:description" content="奥日精灵与萤火意志 打击感分析运用打击感七要素：帧率 攻击 受击 帧冻结 表演设计 音效 额外反馈，结合攻受双方表现分析奥日精灵与萤火意志中奥日的攻击技能，说明打击感部分的设计 这里主要分析奥日普攻的打击感 帧率首先在我的机器上录屏下来的帧率是30帧 奥日普攻第一段只有8帧 这意味着奥日的一段普攻伤害只需要0.268秒左右就能够打完，一秒能够挥出4下普攻，我们很快发现奥日的普攻一共有五段连击。那么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212400.png?token=AG6OSWYOSHZM2MDKPTXRXQLCES3CY">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212439.png?token=AG6OSW55N42BYMHJQJYQCJLCES3FG">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212551.png?token=AG6OSW3MJP5ZWFWKMDBOYNTCES3JY">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212611.png?token=AG6OSW2M4ZA7ISTSKKBCMALCES3K6">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212635.png?token=AG6OSW2DHOWSOE5U5J5RZNDCES3MQ">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212703.png?token=AG6OSWZDW47XGDSJRLHKEBDCES3OK">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212730.png?token=AG6OSWZ4GZUT4SZOSRWERADCES3P4">
+<meta property="og:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212756.png?token=AG6OSWY5CPUCGVMTQUJMBW3CES3RQ">
+<meta property="article:published_time" content="2022-03-06T13:28:47.000Z">
+<meta property="article:modified_time" content="2022-03-06T13:30:26.630Z">
+<meta property="article:author" content="kiritsuguyb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212400.png?token=AG6OSWYOSHZM2MDKPTXRXQLCES3CY">
+
+<link rel="canonical" href="http://yoursite.com/2022/03/06/%E5%A5%A5%E6%97%A5%E7%B2%BE%E7%81%B5%E4%B8%8E%E8%90%A4%E7%81%AB%E6%84%8F%E5%BF%97%20%E6%89%93%E5%87%BB%E6%84%9F%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>奥日精灵与萤火意志 打击感分析 | KiritsuguybのBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KiritsuguybのBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">阿丝爱学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-study">
+
+    <a href="/study/" rel="section"><i class="fa fa-book fa-fw"></i>学业经历</a>
+
+  </li>
+        <li class="menu-item menu-item-game">
+
+    <a href="/game/" rel="section"><i class="fa fa-gamepad fa-fw"></i>游戏经历</a>
+
+  </li>
+        <li class="menu-item menu-item-career">
+
+    <a href="/career/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>实习经历</a>
+
+  </li>
+        <li class="menu-item menu-item-work">
+
+    <a href="/work/" rel="section"><i class="fa fa-trophy fa-fw"></i>相关作品</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>相关文章</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/06/%E5%A5%A5%E6%97%A5%E7%B2%BE%E7%81%B5%E4%B8%8E%E8%90%A4%E7%81%AB%E6%84%8F%E5%BF%97%20%E6%89%93%E5%87%BB%E6%84%9F%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/timg.jpg">
+      <meta itemprop="name" content="kiritsuguyb">
+      <meta itemprop="description" content="月明霁君忧，拨云不见愁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KiritsuguybのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          奥日精灵与萤火意志 打击感分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-06 21:28:47 / 修改时间：21:30:26" itemprop="dateCreated datePublished" datetime="2022-03-06T21:28:47+08:00">2022-03-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="奥日精灵与萤火意志-打击感分析"><a href="#奥日精灵与萤火意志-打击感分析" class="headerlink" title="奥日精灵与萤火意志 打击感分析"></a>奥日精灵与萤火意志 打击感分析</h1><p>运用打击感七要素：<strong>帧率 攻击 受击 帧冻结 表演设计 音效 额外反馈</strong>，结合攻受双方表现分析奥日精灵与萤火意志中奥日的攻击技能，说明打击感部分的设计</p>
+<p>这里主要分析奥日普攻的打击感</p>
+<h2 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h2><p>首先在我的机器上录屏下来的帧率是30帧</p>
+<p>奥日普攻第一段只有8帧</p>
+<p><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212400.png?token=AG6OSWYOSHZM2MDKPTXRXQLCES3CY" alt=""><br>这意味着奥日的一段普攻伤害只需要0.268秒左右就能够打完，一秒能够挥出4下普攻，我们很快发现奥日的普攻一共有五段连击。那么奥日的五段连击加起来是5*8=40帧嘛？不是的，五段连击一共用了51帧，每段连击的打击感层层递进，从帧率上的表现来说，就是每段伤害用的时间越来越长。</p>
+<p>更长的时间意味着更大的前后摇，意味着更强烈的进攻和破绽，同时打击的反馈也会更强。</p>
+<p>来看一下：<br><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212439.png?token=AG6OSW55N42BYMHJQJYQCJLCES3FG" alt=""></p>
+<p>第一段普攻：8帧</p>
+<p>第二段普攻：8帧</p>
+<p>第三段普攻：9帧</p>
+<p>第四段普攻：9帧</p>
+<p>第五段普攻：17帧</p>
+<p>会发现，前两段普攻很快，三四段稍慢一点，第五段是连招结束，所以前后摇更长，给玩家一个技能释放结束的信号，同时增强打击感。</p>
+<p>再来看一下更具体的表：</p>
+<p><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212551.png?token=AG6OSW3MJP5ZWFWKMDBOYNTCES3JY" alt=""><br>前四次普攻的受击判定间隔都是8~9帧，第四次和第五次受击判定之间的间隔是10帧左右，这样创造出了一种节奏和韵律感，前四下流畅爽快，最后一下蓄力感十足。</p>
+<h2 id="攻击方动作表演设计"><a href="#攻击方动作表演设计" class="headerlink" title="攻击方动作表演设计"></a>攻击方动作表演设计</h2><p>奥日的普攻是轻快舒畅的。</p>
+<p>人物占比小，让大开大合的动作成为可能。</p>
+<p>结合第一段普攻的8帧加上第二段普攻的第一帧一起感受一下。<br><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212611.png?token=AG6OSW2M4ZA7ISTSKKBCMALCES3K6" alt=""></p>
+<p>为了强化打击感，也为了衔接第五段的超长前摇，第四段攻击动作设计做了特殊处理。</p>
+<p>这是第四段普攻的帧数表：<br><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212635.png?token=AG6OSW2DHOWSOE5U5J5RZNDCES3MQ" alt=""></p>
+<p>我们可以看到第四帧和第五帧是完全一致的，做了顿帧处理，但和第六帧形成了巨大的对比。</p>
+<p><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212703.png?token=AG6OSWZDW47XGDSJRLHKEBDCES3OK" alt=""></p>
+<p>第四帧第五帧的人物形态很收敛，第六帧一下子挥出一把长剑，大开大合，而且剑的角度变化大概再120°左右，配合前几帧的蓄力，这里的顿帧极大地突出了这次普攻的力道感。</p>
+<p>（当然也省了一个帧话勉的成本和内存）</p>
+<h2 id="受击方"><a href="#受击方" class="headerlink" title="受击方"></a>受击方</h2><p><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212730.png?token=AG6OSWZ4GZUT4SZOSRWERADCES3P4" alt=""></p>
+<p>受击方会在受击的时候被击退，同时产生一个放大的扭曲效果。</p>
+<h2 id="帧冻结"><a href="#帧冻结" class="headerlink" title="帧冻结"></a>帧冻结</h2><p>由于是一个轻剑的快速连续普攻，所以没有使用帧冻结，但是在第四下普攻的设计上做了类似帧冻结的顿帧设计</p>
+<h2 id="音效特效和额外反馈"><a href="#音效特效和额外反馈" class="headerlink" title="音效特效和额外反馈"></a>音效特效和额外反馈</h2><p><img src="https://raw.githubusercontent.com/kiritsuguyb/images/main/20220306212756.png?token=AG6OSWY5CPUCGVMTQUJMBW3CES3RQ" alt=""></p>
+<p>每次在击中地方的时候会产生光痕撕裂的特效，而且节奏非常快，很好的配合了攻击方的动作。</p>
+<p>同时会产生镜头的快速抖动，作为一种额外反馈。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/06/qq%E9%A3%9E%E8%BD%A6%E8%B5%9B%E9%81%93%E5%8D%9A%E5%BC%88%E5%92%8C%E8%8A%82%E5%A5%8F%E5%88%86%E6%9E%90-%E4%BB%A5%E6%B3%95%E8%80%81%E9%87%91%E5%AD%97%E5%A1%94%E4%B8%BA%E4%BE%8B/" rel="prev" title="qq飞车赛道博弈和节奏分析-以法老金字塔为例">
+      <i class="fa fa-chevron-left"></i> qq飞车赛道博弈和节奏分析-以法老金字塔为例
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/06/%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E8%8B%B1%E9%9B%84%E8%AE%BE%E8%AE%A1%E6%BC%94%E5%8F%98%E5%88%86%E6%9E%90/" rel="next" title="王者荣耀英雄设计演变分析————以钟无艳为例">
+      王者荣耀英雄设计演变分析————以钟无艳为例 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#奥日精灵与萤火意志-打击感分析"><span class="nav-number">1.</span> <span class="nav-text">奥日精灵与萤火意志 打击感分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#帧率"><span class="nav-number">1.1.</span> <span class="nav-text">帧率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击方动作表演设计"><span class="nav-number">1.2.</span> <span class="nav-text">攻击方动作表演设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受击方"><span class="nav-number">1.3.</span> <span class="nav-text">受击方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帧冻结"><span class="nav-number">1.4.</span> <span class="nav-text">帧冻结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音效特效和额外反馈"><span class="nav-number">1.5.</span> <span class="nav-text">音效特效和额外反馈</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kiritsuguyb"
+      src="/images/timg.jpg">
+  <p class="site-author-name" itemprop="name">kiritsuguyb</p>
+  <div class="site-description" itemprop="description">月明霁君忧，拨云不见愁</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kiritsuguyb</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
